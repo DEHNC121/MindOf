@@ -37,7 +37,7 @@ public class Player extends Entity
         if (down)
         {
             dy += acc;
-            if (dy < maxSpeed) { dy = maxSpeed; }
+            if (dy > maxSpeed) { dy = maxSpeed; }
         }
         else
         {
