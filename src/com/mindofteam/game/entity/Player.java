@@ -116,7 +116,7 @@ public class Player extends Entity
         }
         else
         {
-            up = down;
+            up = false;
         }
         if (key.down.down)
         {

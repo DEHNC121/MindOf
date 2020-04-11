@@ -12,10 +12,10 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity
 {
-    private int UP = 0;
-    private int DOWN = 1;
-    private int RIGHT = 2;
-    private int LEFT = 3;
+    private int UP = 3;
+    private int DOWN = 2;
+    private int RIGHT = 0;
+    private int LEFT = 1;
 
     protected Animation ani;
     protected Sprite sprite;
@@ -36,9 +36,9 @@ public abstract class Entity
     protected float dx;
     protected float dy;
 
-    protected float maxSpeed;
-    protected float acc;
-    protected float deacc;
+    protected float maxSpeed = 3f;
+    protected float acc = 2f;
+    protected float deacc = 0.1f;
 
     protected AABB hitBounds;
     protected AABB bounds;
