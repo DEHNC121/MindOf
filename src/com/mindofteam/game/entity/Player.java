@@ -1,6 +1,7 @@
 package com.mindofteam.game.entity;
 
 import com.mindofteam.game.graphics.Sprite;
+import com.mindofteam.game.states.PlayState;
 import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
@@ -12,6 +13,8 @@ public class Player extends Entity
     public Player(Sprite sprite, Vector2f orgin, int size)
     {
         super(sprite, orgin, size);
+        acc = 2f;
+        maxSpeed = 3f;
     }
 
     public void move ()
@@ -92,6 +95,8 @@ public class Player extends Entity
     {
         super.update();
         move ();
+        PlayState.map.x += dx;
+        PlayState.map.y += dy;
         pos.x += dx;
         pos.y += dy;
     }
@@ -99,7 +104,7 @@ public class Player extends Entity
     @Override
     public void render(Graphics2D g)
     {
-        g.drawImage(ani.getImage(), (int) (pos.x), (int) (pos.y), size, size, null);
+        g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
     }
 
     public void input (MouseHandler mouse, KeyHandler key)
