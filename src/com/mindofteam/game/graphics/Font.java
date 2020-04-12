@@ -97,7 +97,7 @@ public class Font
 
     public BufferedImage getFont (char letter)
     {
-        int value = letter - 'A';
+        int value = letter;
 
         int x = value % wLetter;
         int y = value / wLetter;
