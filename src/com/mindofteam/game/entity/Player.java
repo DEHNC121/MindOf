@@ -10,16 +10,20 @@ import java.awt.*;
 
 public class Player extends Entity
 {
-    public Player(Sprite sprite, Vector2f orgin, int size)
+    public Player (Sprite sprite, Vector2f orgin, int size)
     {
-        super(sprite, orgin, size);
+        super (sprite, orgin, size);
         acc = 2f;
         maxSpeed = 3f;
+        bounds.setWidth (42);
+        bounds.setHeight (20);
+        bounds.setxOffset (12);
+        bounds.setyOffset (40);
     }
 
     public void move ()
     {
-        if (up)
+        if (up && !down)
         {
             dy -= acc;
             if (dy < -maxSpeed) { dy = -maxSpeed; }
@@ -37,7 +41,7 @@ public class Player extends Entity
         }
 
 
-        if (down)
+        if (down && !up)
         {
             dy += acc;
             if (dy > maxSpeed) { dy = maxSpeed; }
@@ -55,7 +59,7 @@ public class Player extends Entity
         }
 
 
-        if (left)
+        if (left && !right)
         {
             dx -= acc;
             if (dx < -maxSpeed) { dx = -maxSpeed; }
@@ -73,7 +77,7 @@ public class Player extends Entity
         }
 
 
-        if (right)
+        if (right && !left)
         {
             dx += acc;
             if (dx > maxSpeed) { dx = maxSpeed; }
@@ -89,30 +93,40 @@ public class Player extends Entity
                 }
             }
         }
-    }
 
+        //dx = (float) (dx / (Math.sqrt (dx * dx + dy * dy)));
+        //dy = (float) (dy / (Math.sqrt (dx * dx + dy * dy)));
+    }
     public void update ()
     {
-        super.update();
+        super.update ();
         move ();
-        PlayState.map.x += dx;
-        PlayState.map.y += dy;
-        pos.x += dx;
-        pos.y += dy;
+        if (!bounds.collisionTile (dx, 0))
+        {
+            PlayState.map.x += dx;
+            pos.x += dx;
+        }
+        if (!bounds.collisionTile (0, dy))
+        {
+            PlayState.map.y += dy;
+            pos.y += dy;
+        }
     }
 
     @Override
-    public void render(Graphics2D g)
+    public void render (Graphics2D g)
     {
-        g.drawImage(ani.getImage(), (int) (pos.getWorldVar().x), (int) (pos.getWorldVar().y), size, size, null);
+        g.setColor (Color.blue);
+        g.drawRect ((int) (pos.getWorldVar ().x + bounds.getXOffset ()), (int) (pos.getWorldVar ().y + bounds.getYOffset ()), (int) bounds.getWidth (), (int) bounds.getHeight ());
+        g.drawImage (ani.getImage (), (int) (pos.getWorldVar ().x), (int) (pos.getWorldVar ().y), size, size, null);
     }
 
     public void input (MouseHandler mouse, KeyHandler key)
     {
 
-        if (mouse.getButton() == 1)
+        if (mouse.getButton () == 1)
         {
-           System.out.println("Player: " + pos.x + ", " + pos.y);
+            System.out.println ("Player: " + pos.x + ", " + pos.y);
         }
 
         if (key.up.down)
