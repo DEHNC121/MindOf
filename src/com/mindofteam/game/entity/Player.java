@@ -101,15 +101,17 @@ public class Player extends Entity
     {
         super.update ();
         move ();
+        PlayState.map.x += dx;
+        pos.x += dx;
         if (!bounds.collisionTile (dx, 0))
         {
-            PlayState.map.x += dx;
-            pos.x += dx;
+
         }
+        PlayState.map.y += dy;
+        pos.y += dy;
         if (!bounds.collisionTile (0, dy))
         {
-            PlayState.map.y += dy;
-            pos.y += dy;
+
         }
     }
 

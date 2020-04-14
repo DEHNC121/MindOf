@@ -26,9 +26,9 @@ public class PlayState extends GameState
         map = new Vector2f();
         Vector2f.setWorldVar(map.x, map.y);
 
-        tm = new TileManager ("tile/tilemap.xml");
+        tm = new TileManager ("tile/Map.xml");
         font = new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/linkFormatted.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
+        player = new Player(new Sprite("entity/hero.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
 
     }
 

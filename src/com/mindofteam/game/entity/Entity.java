@@ -12,10 +12,10 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity
 {
-    private int UP = 3;
-    private int DOWN = 2;
-    private int RIGHT = 0;
-    private int LEFT = 1;
+    private int UP = 7;
+    private int DOWN = 6;
+    private int RIGHT = 4;
+    private int LEFT = 5;
 
     protected Animation ani;
     protected Sprite sprite;
