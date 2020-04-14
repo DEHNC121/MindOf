@@ -8,9 +8,8 @@ import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
 import com.mindofteam.game.graphics.Font;
-import com.mindofteam.game.tiles.TileManager;
+
 import java.awt.*;
-import java.util.Collection;
 
 public class PlayState extends GameState
 {
