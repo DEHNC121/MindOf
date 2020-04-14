@@ -8,9 +8,8 @@ import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
 import com.mindofteam.game.graphics.Font;
-import com.mindofteam.game.tiles.TileManager;
+
 import java.awt.*;
-import java.util.Collection;
 
 public class PlayState extends GameState
 {
@@ -28,7 +27,7 @@ public class PlayState extends GameState
 
         tm = new TileManager ("tile/tilemap.xml");
         font = new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/linkFormatted.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
+        player = new Player(new Sprite("entity/hero.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 64);
 
     }
 
