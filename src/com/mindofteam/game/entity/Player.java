@@ -23,80 +23,52 @@ public class Player extends Entity
 
     public void move ()
     {
-        if (up && !down)
-        {
-            dy -= acc;
-            if (dy < -maxSpeed) { dy = -maxSpeed; }
+        if(run){ bonus=4f; }
+        else { bonus=0f; }
+        if (up && !down) {
+            dy -= acc+bonus;
+            if (dy < -maxSpeed-bonus) { dy = -maxSpeed-bonus; }
         }
-        else
-        {
-            if (dy < 0)
-            {
+        else {
+            if (dy < 0) {
                 dy += deacc;
-                if (dy > 0)
-                {
-                    dy = 0;
-                }
+                if (dy > 0) dy = 0;
             }
         }
-
-
-        if (down && !up)
-        {
-            dy += acc;
-            if (dy > maxSpeed) { dy = maxSpeed; }
+        if (down && !up) {
+            dy += acc+bonus;
+            if (dy > maxSpeed+bonus) { dy = maxSpeed+bonus; }
         }
-        else
-        {
-            if (dy > 0)
-            {
+        else {
+            if (dy > 0) {
                 dy -= deacc;
-                if (dy < 0)
-                {
-                    dy = 0;
-                }
+                if (dy < 0) dy = 0;
             }
         }
-
-
-        if (left && !right)
-        {
-            dx -= acc;
-            if (dx < -maxSpeed) { dx = -maxSpeed; }
+        if (left && !right) {
+            dx -= acc+bonus;
+            if (dx < -maxSpeed-bonus) { dx = -maxSpeed-bonus; }
         }
-        else
-        {
-            if (dx < 0)
-            {
+        else {
+            if (dx < 0) {
                 dx += deacc;
-                if (dx > 0)
-                {
-                    dx = 0;
-                }
+                if (dx > 0) dx = 0;
             }
         }
-
-
-        if (right && !left)
-        {
-            dx += acc;
-            if (dx > maxSpeed) { dx = maxSpeed; }
+        if (right && !left) {
+            dx += acc+bonus;
+            if (dx > maxSpeed+bonus) { dx = maxSpeed+bonus; }
         }
-        else
-        {
-            if (dx > 0)
-            {
+        else {
+            if (dx > 0) {
                 dx -= deacc;
-                if (dx < 0)
-                {
-                    dx = 0;
-                }
+                if (dx < 0) dx = 0;
             }
         }
-
         //dx = (float) (dx / (Math.sqrt (dx * dx + dy * dy)));
         //dy = (float) (dy / (Math.sqrt (dx * dx + dy * dy)));
     }
+
     public void update ()
     {
         super.update ();
@@ -125,50 +97,48 @@ public class Player extends Entity
 
     public void input (MouseHandler mouse, KeyHandler key)
     {
-
-        if (mouse.getButton () == 1)
-        {
+        boolean moving=false;
+        if (mouse.getButton () == 1) {
             System.out.println ("Player: " + pos.x + ", " + pos.y);
         }
-
-        if (key.up.down)
-        {
+        if (key.up.down) {
             up = true;
+            moving=true;
         }
-        else
-        {
+        else {
             up = false;
         }
-        if (key.down.down)
-        {
+        if (key.down.down) {
             down = true;
+            moving=true;
         }
-        else
-        {
-            down = false;
+        else {
+            down=false;
         }
-        if (key.left.down)
-        {
+        if (key.left.down) {
             left = true;
+            moving=true;
         }
-        else
-        {
+        else {
             left = false;
         }
-        if (key.right.down)
-        {
+        if (key.right.down) {
             right = true;
+            moving=true;
         }
-        else
-        {
-            right = false;
+        else {
+            right=false;
         }
-        if (key.attack.down)
-        {
+        if(key.run.down && moving) {
+            run=true;
+        }
+        else {
+            run=false;
+        }
+        if (key.attack.down && !key.run.down) {
             attack = true;
         }
-        else
-        {
+        else {
             attack = false;
         }
     }

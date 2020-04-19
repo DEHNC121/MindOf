@@ -30,6 +30,7 @@ public abstract class Entity
     protected boolean right;
     protected boolean left;
     protected boolean attack;
+    protected boolean run;
     protected int attackSpeed;
     protected int attackDuration;
 
@@ -39,6 +40,7 @@ public abstract class Entity
     protected float maxSpeed = 3f;
     protected float acc = 1f;
     protected float deacc = 1f;
+    float bonus=0f;
 
     protected AABB hitBounds;
     protected AABB bounds;
