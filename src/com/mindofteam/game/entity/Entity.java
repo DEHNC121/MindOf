@@ -37,9 +37,9 @@ public abstract class Entity
     protected float dx;
     protected float dy;
 
-    protected float maxSpeed = 3f;
-    protected float acc = 1f;
-    protected float deacc = 1f;
+    protected float maxSpeed=3f;
+    protected float acc=1f;
+    protected float deacc=1f;
     float bonus=0f;
 
     protected AABB hitBounds;
@@ -67,6 +67,7 @@ public abstract class Entity
 
     public AABB getBounds () { return bounds; }
 
+    public Vector2f getPos(){ return pos; }
     public int getSize () { return size; }
     public Animation getAnimation () { return ani; }
 

@@ -14,14 +14,16 @@ import java.awt.*;
 public class PlayState extends GameState
 {
     private Font font;
-    private Player player;
+    protected static Player player;
     private TileManager tm;
+    private static GameStateManager gsm;
 
     public static Vector2f map;
 
     public PlayState (GameStateManager gsm)
     {
         super(gsm);
+        this.gsm=gsm;
         map = new Vector2f();
         Vector2f.setWorldVar(map.x, map.y);
 
@@ -30,12 +32,25 @@ public class PlayState extends GameState
         player = new Player(new Sprite("entity/hero.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 86);
 
     }
+    public PlayState (GameStateManager gsm, Vector2f v, Vector2f map)
+    {
+        super(gsm);
+        this.gsm=gsm;
+        this.map = map;
+        Vector2f.setWorldVar(map.x, map.y);
+
+        tm = new TileManager ("tile/Map.xml");
+        font = new Font ("font/font.png", 10, 10);
+        player = new Player(new Sprite("entity/hero.png"), v,86);
+
+    }
 
     @Override
     public void update()
     {
         Vector2f.setWorldVar(map.x, map.y);
         player.update();
+        player.stamina();
     }
 
     @Override
@@ -48,7 +63,14 @@ public class PlayState extends GameState
     public void render(Graphics2D g)
     {
         tm.render(g);
-        Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 32), 32, 32, 24, 0);
+        StringBuilder sb=new StringBuilder();
+        for(int i=0; i<20-player.stamina; i++) sb.append(" ");
+        for(int i=0; i<player.stamina; i++) sb.append("+");
+        Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 32), 32, 32, 24, 0);
         player.render(g);
+    }
+
+    public static void pause(){
+        gsm.set(new PauseState(gsm, player.getPos(), map));
     }
 }
