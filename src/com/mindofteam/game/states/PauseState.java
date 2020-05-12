@@ -44,21 +44,11 @@ public class PauseState extends GameState
         if(key.down.down && one_down){
             k=(k-1)%ILO;
             if (k<0)k*=-1;
-            System.out.println(k);
             one_down=false;
-//            try{
-//                Thread.sleep(20);
-//            } catch (Exception e) {}
         }
         else if(key.up.down && one_up){
             k=(k+1)%ILO;
-
-            System.out.println(k);
             one_up=false;
-
-//            try{
-//                Thread.sleep(20);
-//            } catch (Exception e) {}
         }
         if(!key.down.down && !one_down){
             one_down=true;
