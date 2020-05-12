@@ -9,7 +9,7 @@ public class Window extends JFrame
         setTitle ("MindOf");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setContentPane (new GamePanel (1280, 720));
+        setContentPane (new GamePanel (680, 360));
         pack();
 
         setLocationRelativeTo(null);

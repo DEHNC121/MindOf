@@ -1,6 +1,7 @@
 package com.mindofteam.game;
 
 import com.mindofteam.game.states.GameStateManager;
+import com.mindofteam.game.tiles.Message;
 import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 
@@ -24,6 +25,7 @@ public class GamePanel extends JPanel implements Runnable
     private KeyHandler key;
 
     private GameStateManager gsm;
+    private Message message;
 
     public GamePanel (int w, int h)
     {
@@ -55,6 +57,7 @@ public class GamePanel extends JPanel implements Runnable
         key = new KeyHandler (this);
 
         gsm = new GameStateManager();
+        message=new Message();
     }
 
     @Override

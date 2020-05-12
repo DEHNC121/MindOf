@@ -1,5 +1,8 @@
 package com.mindofteam.game.tiles.blocks;
 
+import com.mindofteam.game.GamePanel;
+import com.mindofteam.game.graphics.Sprite;
+import com.mindofteam.game.tiles.Message;
 import com.mindofteam.game.util.AABB;
 import com.mindofteam.game.util.Vector2f;
 
@@ -8,23 +11,22 @@ import java.awt.image.BufferedImage;
 
 public class HoleBlock extends Block
 {
-
-    public HoleBlock (BufferedImage img, Vector2f pos, int w, int h)
-    {
+    public static int count=0;
+    public int id;
+    public HoleBlock (BufferedImage img, Vector2f pos, int w, int h) {
         super(img, pos, w, h);
+        this.id=count;
+        count++;
     }
 
     @Override
-    public boolean update(AABB p)
-    {
-        System.out.println ("I am hole");
-
+    public boolean update(AABB p) {
+        System.out.println("HOLE");
+        Message.print(this.id);
         return false;
     }
 
-    public boolean isInside (AABB p)
-    {
-
+    public boolean isInside (AABB p) {
         if (p.getPos ().x + p.getXOffset () < pos.x) { return false; }
         if (p.getPos ().y + p.getYOffset () < pos.y) { return false; }
         if (w + pos.x < p.getWidth () + (p.getPos ().x + p.getXOffset ())) { return false; }
