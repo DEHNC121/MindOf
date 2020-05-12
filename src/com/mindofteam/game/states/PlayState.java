@@ -80,7 +80,7 @@ public class PlayState extends GameState
         currentMessage=s;
     }
     public static void print(String s, Graphics2D g){
-        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(currentMessage.length()*7) , 10), 22, 22, 14, 0);
+        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(currentMessage.length()*7) , GamePanel.height-30), 22, 22, 14, 0);
     }
 
     public static void pause(){
