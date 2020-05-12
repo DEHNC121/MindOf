@@ -66,7 +66,8 @@ public class PlayState extends GameState
         StringBuilder sb=new StringBuilder();
         for(int i=0; i<20-player.stamina; i++) sb.append(" ");
         for(int i=0; i<player.stamina; i++) sb.append("+");
-        Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 32), 32, 32, 24, 0);
+        Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 52), 32, 32, 24, 0);
+        Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 10), 32, 32, 24, 0);
         player.render(g);
     }
 

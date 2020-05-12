@@ -3,7 +3,6 @@ package com.mindofteam.game.tiles;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.blocks.Block;
 import com.mindofteam.game.tiles.blocks.HoleBlock;
-import com.mindofteam.game.tiles.blocks.InfoBlock;
 import com.mindofteam.game.tiles.blocks.ObjBlock;
 import com.mindofteam.game.util.Vector2f;
 
@@ -26,16 +25,19 @@ public class TileMapObj extends TileMap
         for (int i = 0; i < (width * height); ++i)
         {
             int temp = Integer.parseInt(block [i].replaceAll("\\s+", ""));
-            if (temp != 0)
-            {
-                //System.out.println(temp+"  <-");
-                if (temp != 807)
-                {
-                    tempBlock = new ObjBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                }
-                else
-                {
-                    tempBlock = new ObjBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+            if (temp != 0) {
+                if (temp == 807) {
+                    //No entry allowed
+
+                    tempBlock = new ObjBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+
+                } else if (temp == 1) {
+                    //Dead
+                    tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                } else {
+                    //test
+                    tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+
                 }
                 tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
             }

@@ -107,13 +107,17 @@ public class AABB
 
     public boolean collisionTile (float ax, float ay)
     {
+
         for (int c = 0; c < 4; ++c)
         {
             int xt = (int) ((pos.x + ax) + (c % 2) * w + xOffset) / 64;
             int yt = (int) ((pos.y + ay) + ((int) (c / 2)) * h + yOffset) / 64;
 
+
             if (TileMapObj.tmo_blocks.containsKey(String.valueOf(xt) + "," + String.valueOf(yt)))
             {
+
+
                 Block block = TileMapObj.tmo_blocks.get (String.valueOf (xt) + "," + String.valueOf (yt));
                 if (block instanceof HoleBlock)
                 {
@@ -128,7 +132,8 @@ public class AABB
     private boolean collisionHole (float ax, float ay, float xt, float yt, Block block)
     {
         int nextXt = (int) ((((pos.x + ax) + xOffset) / 64 ) + w / 64);
-        int nextYt = (int) ((((pos.y + ay) + yOffset) / 64 ) + w / 64);
+        int nextYt = (int) ((((pos.y + ay) + yOffset) / 64 ) + h / 64);
+
 
         if ((nextXt == yt + 1) || (nextXt == xt + 1))
         {
@@ -137,15 +142,15 @@ public class AABB
                 Block blockNeighbour = TileMapObj.tmo_blocks.get (String.valueOf (nextXt) + "," + String.valueOf (nextYt));
                 return blockNeighbour.update (this);
             }
-            else
+            return false;
+        }
+        else
+        {
+            if (block.isInside (this))
             {
-                if (block.isInside (this))
-                {
-                    return block.update (this);
-                }
+                return block.update (this);
             }
         }
-
         return false;
     }
 

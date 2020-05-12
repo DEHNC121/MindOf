@@ -12,10 +12,14 @@ import java.awt.image.BufferedImage;
 
 public abstract class Entity
 {
-    private int UP = 7;
-    private int DOWN = 6;
-    private int RIGHT = 4;
-    private int LEFT = 5;
+    private int UP = 3;
+    private int DOWN = 2;
+    private int RIGHT = 0;
+    private int LEFT = 1;
+    private int RIGHT_UP = 4;
+    private int LEFT_UP = 5;
+    private int LEFT_DOWN = 6;
+    private int RIGHT_DOWN = 7;
 
     protected Animation ani;
     protected Sprite sprite;
@@ -29,6 +33,8 @@ public abstract class Entity
     protected boolean down;
     protected boolean right;
     protected boolean left;
+
+
     protected boolean attack;
     protected boolean run;
     protected int attackSpeed;
@@ -37,9 +43,9 @@ public abstract class Entity
     protected float dx;
     protected float dy;
 
-    protected float maxSpeed=3f;
-    protected float acc=1f;
-    protected float deacc=1f;
+    protected float maxSpeed = 3f;
+    protected float acc = 1f;
+    protected float deacc = 1f;
     float bonus=0f;
 
     protected AABB hitBounds;
@@ -80,28 +86,58 @@ public abstract class Entity
 
     public void animate ()
     {
-        if (up)
+
+
+        if (up && right && !down && !left)
+        {
+            if (currentAnimation != RIGHT_UP || ani.getDelay() == -1)
+            {
+                setAnimation(RIGHT_UP, sprite.getSpriteArray(RIGHT_UP), 8);
+            }
+        }
+        else if (up && left && !down && !right)
+        {
+            if (currentAnimation != LEFT_UP || ani.getDelay() == -1)
+            {
+                setAnimation(LEFT_UP, sprite.getSpriteArray(LEFT_UP), 8);
+            }
+        }
+        else if (down && left && !up && !right)
+        {
+            if (currentAnimation != LEFT_DOWN || ani.getDelay() == -1)
+            {
+                setAnimation(LEFT_DOWN, sprite.getSpriteArray(LEFT_DOWN), 8);
+            }
+        }
+        else if (down && right&& !up && !left)
+        {
+            if (currentAnimation != RIGHT_DOWN || ani.getDelay() == -1)
+            {
+                setAnimation(RIGHT_DOWN, sprite.getSpriteArray(RIGHT_DOWN), 8);
+            }
+        }
+        else if (up&& !down && !right&& !left)
         {
             if (currentAnimation != UP || ani.getDelay() == -1)
             {
                 setAnimation(UP, sprite.getSpriteArray(UP), 5);
             }
         }
-        else if (down)
+        else if (down && !up && !right&& !left)
         {
             if (currentAnimation != DOWN || ani.getDelay() == -1)
             {
                 setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
             }
         }
-        else if (left)
+        else if (left && !down && !right&& !up)
         {
             if (currentAnimation != LEFT || ani.getDelay() == -1)
             {
                 setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
             }
         }
-        else if (right)
+        else if (right && !down && !up&& !left)
         {
             if (currentAnimation != RIGHT || ani.getDelay() == -1)
             {
