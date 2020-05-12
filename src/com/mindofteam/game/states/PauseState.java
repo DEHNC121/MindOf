@@ -9,6 +9,7 @@ import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class PauseState extends GameState
@@ -21,6 +22,7 @@ public class PauseState extends GameState
     private boolean one_down;
     private boolean one_up;
     private static int ILO=2;
+    private String[] Mane_pause;
 
     public PauseState(GameStateManager gsm, Vector2f v, Vector2f map) {
         super(gsm);
@@ -32,6 +34,9 @@ public class PauseState extends GameState
         this.k=ILO-1;
         this.one_down=true;
         this.one_up=true;
+        this.Mane_pause=new String[ILO];
+        this.Mane_pause[0]=" RESUME";
+        this.Mane_pause[1]=" RESTART";
     }
     public int pause;
     @Override
@@ -58,7 +63,7 @@ public class PauseState extends GameState
         }
         if(key.enter.down){
             if(k==0) unPause();
-            if(k==1) restart();
+            else if(k==1) restart();
         }
     }
     public static void unPause(){
@@ -72,14 +77,16 @@ public class PauseState extends GameState
     @Override
     public void render(Graphics2D g) {
         //tm.render(g);
+        Sprite.drawArray(g, font,Mane_pause[0], new Vector2f (GamePanel.width /2-(Mane_pause[0].length()*30) , GamePanel.height/4), 62, 62, 42, 0);
+        Sprite.drawArray(g, font, Mane_pause[1], new Vector2f (GamePanel.width /2-(Mane_pause[1].length()*30), GamePanel.height/4+55), 62, 62, 42, 0);
+
         if(k==0) {
-            Sprite.drawArray(g, font, ">RESUME", new Vector2f (GamePanel.width /2-100, GamePanel.height/2-30), 62, 62, 42, 0);
-            Sprite.drawArray(g, font, " RESTART", new Vector2f (GamePanel.width /2-100, GamePanel.height/2+20), 62, 62, 42, 0);
+            Sprite.drawArray(g, font,">", new Vector2f (GamePanel.width /2-260 , GamePanel.height/4), 62, 62, 42, 0);
 
         }
         else if (k==1){
-            Sprite.drawArray(g, font, " RESUME", new Vector2f (GamePanel.width /2-100, GamePanel.height/2-30), 62, 62, 42, 0);
-            Sprite.drawArray(g, font, ">RESTART", new Vector2f (GamePanel.width /2-100, GamePanel.height/2+20), 62, 62, 42, 0);
+            Sprite.drawArray(g, font,">", new Vector2f (GamePanel.width /2-260 , GamePanel.height/4+55), 62, 62, 42, 0);
+
         }
         //player.render(g);
     }
