@@ -1,12 +1,9 @@
 package com.mindofteam.game.util;
 
 import com.mindofteam.game.entity.Entity;
-import com.mindofteam.game.tiles.TileMap;
 import com.mindofteam.game.tiles.TileMapObj;
 import com.mindofteam.game.tiles.blocks.Block;
-import com.mindofteam.game.tiles.blocks.HoleBlock;
-
-import java.util.Spliterators;
+import com.mindofteam.game.tiles.blocks.MessageBlock;
 
 public class AABB
 {
@@ -119,7 +116,7 @@ public class AABB
 
 
                 Block block = TileMapObj.tmo_blocks.get (String.valueOf (xt) + "," + String.valueOf (yt));
-                if (block instanceof HoleBlock)
+                if (block instanceof MessageBlock)
                 {
                     return collisionHole (ax, ay, xt, yt, block);
                 }

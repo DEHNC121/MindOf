@@ -13,10 +13,11 @@ import java.util.concurrent.Executors;
 public class Player extends Entity
 {
 
-    public int stamina;
+    private int stamina;
     public int pause;
     private Executor staminaThread;
     public boolean paused;
+    private int gold;
 
     public Player (Sprite sprite, Vector2f orgin, int size)
     {
@@ -31,6 +32,7 @@ public class Player extends Entity
         stamina=10;
         staminaThread= Executors.newSingleThreadExecutor();
         stamina();
+        gold=0;
     }
 
     public void move ()
@@ -233,6 +235,12 @@ public class Player extends Entity
             }
         }
     }
+
+    public void setGold(int g){
+        gold+=g;
+        if(gold<0) gold=0;
+    }
+
     public void stamina() {
         staminaThread.execute(()->{
             try {
@@ -241,5 +249,11 @@ public class Player extends Entity
                 else if (stamina < 10) stamina++;
             } catch (Exception e) {}
         });
+    }
+    public int getGold(){
+        return gold;
+    }
+    public int getStamina(){
+        return stamina;
     }
 }

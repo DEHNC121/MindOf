@@ -2,13 +2,12 @@ package com.mindofteam.game.tiles;
 
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.blocks.Block;
-import com.mindofteam.game.tiles.blocks.HoleBlock;
+import com.mindofteam.game.tiles.blocks.MessageBlock;
 import com.mindofteam.game.tiles.blocks.ObjBlock;
 import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.ArrayList;
 
 public class TileMapObj extends TileMap
 {
@@ -33,10 +32,10 @@ public class TileMapObj extends TileMap
 
                 } else if (temp == 1) {
                     //Dead
-                    tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                    tempBlock = new MessageBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 } else {
                     //test
-                    tempBlock = new HoleBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                    tempBlock = new MessageBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
 
                 }
                 tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);

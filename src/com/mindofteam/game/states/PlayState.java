@@ -68,16 +68,20 @@ public class PlayState extends GameState
     {
         tm.render(g);
         StringBuilder sb=new StringBuilder();
-        for(int i=0; i<20-player.stamina; i++) sb.append(" ");
-        for(int i=0; i<player.stamina; i++) sb.append("+");
+        for(int i=0; i<20-player.getStamina(); i++) sb.append(" ");
+        for(int i=0; i<player.getStamina(); i++) sb.append("+");
         Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 52), 32, 32, 24, 0);
         Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 10), 32, 32, 24, 0);
+        Sprite.drawArray(g, font, "Gold: "+player.getGold(), new Vector2f (GamePanel.width - 642, 10), 32, 32, 24, 0);
         player.render(g);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
     }
     public static void notify(String s){
         currentMessage=s;
+    }
+    public static void notify(int g){
+        player.setGold(g);
     }
     public static void print(String s, Graphics2D g){
         Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(currentMessage.length()*7) , GamePanel.height-30), 22, 22, 14, 0);

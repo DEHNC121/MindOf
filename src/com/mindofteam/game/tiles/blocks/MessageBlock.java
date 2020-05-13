@@ -10,12 +10,12 @@ import com.mindofteam.game.util.Vector2f;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class HoleBlock extends Block
+public class MessageBlock extends Block
 {
     private  boolean visited;
     public static int count=0;
     public int id;
-    public HoleBlock (BufferedImage img, Vector2f pos, int w, int h) {
+    public MessageBlock(BufferedImage img, Vector2f pos, int w, int h) {
         super(img, pos, w, h);
         this.id=count;
         count++;
@@ -26,8 +26,6 @@ public class HoleBlock extends Block
     public boolean update(AABB p) {
         System.out.println("HOLE");
         Message.print(this.id);
-        if(!visited) PlayState.notify(10);
-        visited=true;
         return false;
     }
 
