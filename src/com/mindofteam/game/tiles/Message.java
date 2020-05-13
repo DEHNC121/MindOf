@@ -19,6 +19,6 @@ public class Message {
     private static Font font= new Font ("font/font.png", 10, 10);
 
     public static void print(int i){
-        if(i<tab.length) PlayState.notify(tab[i]);
+       if(i<tab.length) PlayState.notify(tab[i]);
     }
 }

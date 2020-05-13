@@ -113,8 +113,6 @@ public class AABB
 
             if (TileMapObj.tmo_blocks.containsKey(String.valueOf(xt) + "," + String.valueOf(yt)))
             {
-
-
                 Block block = TileMapObj.tmo_blocks.get (String.valueOf (xt) + "," + String.valueOf (yt));
                 if (block instanceof MessageBlock)
                 {

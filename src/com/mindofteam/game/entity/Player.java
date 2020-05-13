@@ -180,6 +180,7 @@ public class Player extends Entity
             g.drawImage (ani.getImage (), (int) (pos.getWorldVar ().x), (int) (pos.getWorldVar ().y), size, size, null);
 
         }
+        System.out.println(gold);
     }
 
     public void input (MouseHandler mouse, KeyHandler key)
