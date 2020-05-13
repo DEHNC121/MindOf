@@ -19,6 +19,10 @@ public class TileManager
 
     public static ArrayList <TileMap> tm;
 
+    public TileMap getTm(int i) {
+        return tm.get(i);
+    }
+
     public TileManager ()
     {
         tm = new ArrayList<TileMap>();

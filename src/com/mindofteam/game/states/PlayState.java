@@ -17,12 +17,16 @@ public class PlayState extends GameState
     private Font font;
     private static Font staticFont;
     protected static Player player;
-    private TileManager tm;
+    private static TileManager tm;
     private static GameStateManager gsm;
     private Message message;
     private static String currentMessage;
 
     public static Vector2f map;
+
+    public static TileManager getTm() {
+        return tm;
+    }
 
     public PlayState (GameStateManager gsm)
     {
@@ -72,7 +76,7 @@ public class PlayState extends GameState
         for(int i=0; i<player.getStamina(); i++) sb.append("+");
         Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 52), 32, 32, 24, 0);
         Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 10), 32, 32, 24, 0);
-        Sprite.drawArray(g, font, "Gold: "+player.getGold(), new Vector2f (GamePanel.width - 642, 10), 32, 32, 24, 0);
+        Sprite.drawArray(g, font, "Gold: "+player.getGold(), new Vector2f (10, 10), 32, 32, 24, 0);
         player.render(g);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
@@ -84,7 +88,7 @@ public class PlayState extends GameState
         player.setGold(g);
     }
     public static void print(String s, Graphics2D g){
-        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(currentMessage.length()*7) , GamePanel.height-30), 22, 22, 14, 0);
+        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-100 , GamePanel.height-30), 22, 22, 14, 0);
     }
 
     public static void pause(){

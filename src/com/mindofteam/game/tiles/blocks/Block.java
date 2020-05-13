@@ -22,6 +22,7 @@ public abstract class Block
         this.h = h;
     }
 
+
     public abstract boolean update (AABB p);
 
     public abstract boolean isInside (AABB p);
