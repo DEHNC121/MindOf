@@ -24,7 +24,6 @@ public class MessageBlock extends Block
 
     @Override
     public boolean update(AABB p) {
-        System.out.println("HOLE");
         Message.print(this.id);
         return false;
     }

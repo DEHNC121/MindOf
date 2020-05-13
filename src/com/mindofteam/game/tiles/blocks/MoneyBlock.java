@@ -46,9 +46,6 @@ public class MoneyBlock extends Block{
 
             ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y-1),new NormBlock(img[0], new Vector2f((int) x * 64, (int) (y-1) * 64), 64, 64));
             ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x+1) + "," + String.valueOf(y-1),new NormBlock(img[1], new Vector2f((int) (x+1) * 64, (int) (y-1) * 64), 64, 64));
-//            ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().remove(String.valueOf(x+1) + "," + String.valueOf(y));
-//            ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().remove(String.valueOf(x) + "," + String.valueOf(y-1));
-//            ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().remove(String.valueOf(x+1) + "," + String.valueOf(y-1));
         }
         else if (
                 ((TileMapObj)PlayState.getTm().getTm(0)).getTmo_blocks().containsKey(String.valueOf(x-1) + "," + String.valueOf(y)) &&
@@ -57,12 +54,14 @@ public class MoneyBlock extends Block{
         {
 
             ((TileMapObj)PlayState.getTm().getTm(0)).getTmo_blocks().remove(String.valueOf(x-1) + "," + String.valueOf(y));
+
+            ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x-1) + "," + String.valueOf(y-1),new NormBlock(img[0], new Vector2f((int) (x-1) * 64, (int) (y-1) * 64), 64, 64));
+            ((TileMapNorm)PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y-1),new NormBlock(img[1], new Vector2f((int) x * 64, (int) (y-1) * 64), 64, 64));
         }
 
 
         ((TileMapObj)PlayState.getTm().getTm(0)).getTmo_blocks().remove(String.valueOf(x) + "," + String.valueOf(y));
 
-        //((TileMapObj)PlayState.getTm().getTm(0)).getTmo_blocks().put();
 
         return false;
     }

@@ -88,7 +88,7 @@ public class PlayState extends GameState
         player.setGold(g);
     }
     public static void print(String s, Graphics2D g){
-        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-100 , GamePanel.height-30), 22, 22, 14, 0);
+        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(s.length()*10) , GamePanel.height-50), 22, 22, 14, 0);
     }
 
     public static void pause(){
