@@ -29,6 +29,10 @@ public class PlayState extends GameState
         return tm;
     }
 
+    public static Font getStaticFont() {
+        return staticFont;
+    }
+
     public PlayState (GameStateManager gsm)
     {
         super(gsm);
