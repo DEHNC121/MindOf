@@ -12,8 +12,8 @@ public class Message {
     private static String[] tab={
             "This is the game called MindOf",
             "This is the game called MindOf",
-            "You can run by pressing 'k'",
-            "You can run by pressing 'k'"
+            "You can run by pressing 'K'",
+            "You can run by pressing 'K'"
     };
 
     private static Font font= new Font ("font/font.png", 10, 10);

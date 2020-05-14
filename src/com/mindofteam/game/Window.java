@@ -14,10 +14,10 @@ public class Window extends JFrame
 
         setContentPane (new GamePanel ((int)ekran.getWidth(), (int)ekran.getHeight()));
         pack();
-
-        setAlwaysOnTop(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
+//
+//        setAlwaysOnTop(true);
+//        setResizable(false);
+//        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

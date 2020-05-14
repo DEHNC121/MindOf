@@ -21,6 +21,7 @@ public class PlayState extends GameState
     private static GameStateManager gsm;
     private Message message;
     private static String currentMessage;
+    public static boolean do_id=false;
 
     public static Vector2f map;
 
@@ -65,8 +66,16 @@ public class PlayState extends GameState
     @Override
     public void input(MouseHandler mouse, KeyHandler key) {
         player.input(mouse, key);
+        if (key.do_it.down){
+            do_id=true;
+        }else {
+            do_id=false;
+        }
     }
 
+    private int gold=0;
+    private int add=0;
+    private int i=0;
     @Override
     public void render(Graphics2D g)
     {
@@ -77,6 +86,15 @@ public class PlayState extends GameState
         Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 52), 32, 32, 24, 0);
         Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 10), 32, 32, 24, 0);
         Sprite.drawArray(g, font, "Gold: "+player.getGold(), new Vector2f (10, 10), 32, 32, 24, 0);
+        if (gold!=player.getGold() || i>=0){
+            if (gold!=player.getGold()){
+                i=20;
+                add=player.getGold()-gold;
+            }
+            Sprite.drawArray(g, font, (add < 0) ? String.valueOf(add) : "+ "+String.valueOf(add), new Vector2f (15, 40), 32, 32, 24, 0);
+            gold=player.getGold();
+            i--;
+        }
         player.render(g);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
@@ -88,7 +106,7 @@ public class PlayState extends GameState
         player.setGold(g);
     }
     public static void print(String s, Graphics2D g){
-        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(s.length()*10) , GamePanel.height-50), 22, 22, 14, 0);
+        Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(s.length()*10) , GamePanel.height-50), 25, 35, 20, 0);
     }
 
     public static void pause(){

@@ -32,10 +32,22 @@ public class TileMapObj extends TileMap
                     //Dead
                     tempBlock = new MessageBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
                 } else if (temp == 2) {
-                    //test
-                    tempBlock = new MoneyBlock(sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
+                    tempBlock = new MoneyBlock("gold,not key,closed,1",sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
 
-                } else {
+                }
+                else if (temp == 3) {
+                    tempBlock = new MoneyBlock("gold,key,closed,1",sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
+
+                }
+                else if (temp == 4) {
+                    tempBlock = new MoneyBlock("silver,not key,closed,1",sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
+
+                }
+                else if (temp == 5) {
+                    tempBlock = new MoneyBlock("silver,key,closed,1",sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
+
+                }
+                else {
                     //test
                     tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
 

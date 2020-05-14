@@ -11,7 +11,7 @@ public class KeyHandler implements KeyListener
 {
     
     public static List <Key> keys = new ArrayList<Key>();
-    
+
     public class Key
     {
         public int presses, absorbs;
@@ -46,6 +46,7 @@ public class KeyHandler implements KeyListener
         }
     }
 
+
     public Key up = new Key();
     public Key down = new Key();
     public Key left = new Key();
@@ -57,6 +58,7 @@ public class KeyHandler implements KeyListener
     public Key run = new Key();
     public Key fps = new Key();
     public Key pause=new Key();
+    public Key do_it=new Key();
 
     public KeyHandler (GamePanel game)
     {
@@ -92,6 +94,7 @@ public class KeyHandler implements KeyListener
         if (e.getKeyCode() == KeyEvent.VK_K) run.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_F) fps.toggle(pressed);
         if (e.getKeyCode() == KeyEvent.VK_P) pause.toggle(pressed);
+        if (e.getKeyCode() == KeyEvent.VK_E) do_it.toggle(pressed);
     }
 
     @Override
