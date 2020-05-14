@@ -1,40 +1,47 @@
 package com.mindofteam.game.states;
 
 import com.mindofteam.game.GamePanel;
+import com.mindofteam.game.entity.Player;
 import com.mindofteam.game.graphics.Font;
 import com.mindofteam.game.graphics.Sprite;
+import com.mindofteam.game.tiles.TileManager;
 import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class PauseState extends GameState
 {
     private static GameStateManager gsm;
-    private static Vector2f v;
     private Font font;
     private int k;
-    public static Vector2f map;
     private boolean one_down;
     private boolean one_up;
-    private static int ILO=3;
-    private String[] Mane_pause;
+    private ArrayList<String> Mane_pause;
+    private TileManager tm;
+    private Vector2f map;
+    private static Player player;
 
-    public PauseState(GameStateManager gsm, Vector2f v, Vector2f map) {
+    public PauseState(GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
         this.gsm=gsm;
-        this.v=v;
+        this.font = new Font ("font/font.png", 10, 10);
         this.map=map;
         Vector2f.setWorldVar(map.x, map.y);
         this.font = PlayState.getStaticFont();
-        this.k=ILO-1;
+        this.k=0;
         this.one_down=true;
         this.one_up=true;
-        this.Mane_pause=new String[ILO];
-        this.Mane_pause[0]=" RESUME";
-        this.Mane_pause[1]=" RESTART";
-        this.Mane_pause[2]=" EXIT";
+        this.tm=tm;
+        player=p;
+        this.Mane_pause=new ArrayList<String>();
+
+        Mane_pause.add("RESUME");
+        Mane_pause.add("RESTART");
+        Mane_pause.add("EXIT");
     }
     public int pause;
     @Override
@@ -45,12 +52,12 @@ public class PauseState extends GameState
     @Override
     public void input(MouseHandler mouse, KeyHandler key) {
         if(key.down.down && one_down){
-            k=(k+1)%ILO;
+            k=(k+1)%Mane_pause.size();
             one_down=false;
         }
         else if(key.up.down && one_up){
-            k=(k-1)%ILO;
-            if (k<0)k=ILO-1;
+            k=(k-1)%Mane_pause.size();
+            if (k<0)k=Mane_pause.size()-1;
             one_up=false;
         }
         if(!key.down.down && !one_down){
@@ -65,8 +72,8 @@ public class PauseState extends GameState
             if(k==2) exit();
         }
     }
-    public static void unPause(){
-        gsm.set(new PlayState(gsm, v, map));
+    public void unPause(){
+        gsm.set(new PlayState(gsm, map, tm, player));
     }
 
     public static void restart(){
@@ -81,10 +88,9 @@ public class PauseState extends GameState
     public void render(Graphics2D g) {
         //tm.render(g);
 
-        Sprite.drawArray(g, font,Mane_pause[0], new Vector2f (GamePanel.width /2-(Mane_pause[0].length()*30) , GamePanel.height/4), 62, 62, 42, 0);
-        Sprite.drawArray(g, font, Mane_pause[1], new Vector2f (GamePanel.width /2-(Mane_pause[1].length()*30), GamePanel.height/4+55), 62, 62, 42, 0);
-        Sprite.drawArray(g, font, Mane_pause[2], new Vector2f (GamePanel.width /2-(Mane_pause[2].length()*30), GamePanel.height/4+110), 62, 62, 42, 0);
-
+        for (int i=0;i<Mane_pause.size();i++){
+            Sprite.drawArray(g, font,Mane_pause.get(i), new Vector2f (GamePanel.width /2-(Mane_pause.get(i).length()*30) , GamePanel.height/4+55*i), 62, 62, 42, 0);
+        }
 
         Sprite.drawArray(g, font,">", new Vector2f (GamePanel.width /2-260 , GamePanel.height/4+55*k), 62, 62, 42, 0);
 
