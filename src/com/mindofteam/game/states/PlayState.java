@@ -43,17 +43,20 @@ public class PlayState extends GameState
         message=new Message();
         currentMessage=null;
     }
-    public PlayState (GameStateManager gsm, Vector2f v, Vector2f map)
-    {
+
+    public PlayState (GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
         this.gsm=gsm;
         this.map = map;
         Vector2f.setWorldVar(map.x, map.y);
-
-        tm = new TileManager ("tile/Map.xml");
-        font = new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/hero.png"), v,86);
-
+        this.tm=tm;
+        this.font=new Font ("font/font.png", 10, 10);
+        staticFont=new Font ("font/font.png", 10, 10);
+        message=new Message();
+        player = new Player(new Sprite("entity/hero.png"),  p.getPos(), 86);
+        player.setGold(p.getGold());
+        currentMessage=null;
+        Vector2f.setWorldVar(map.x, map.y);
     }
 
     @Override
@@ -96,6 +99,7 @@ public class PlayState extends GameState
             i--;
         }
         player.render(g);
+        System.out.println(player.getPos().x+" "+player.getPos().y);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
     }
@@ -110,6 +114,6 @@ public class PlayState extends GameState
     }
 
     public static void pause(){
-        gsm.set(new PauseState(gsm, player.getPos(), map));
+        gsm.set(new PauseState(gsm, map, tm, player));
     }
 }

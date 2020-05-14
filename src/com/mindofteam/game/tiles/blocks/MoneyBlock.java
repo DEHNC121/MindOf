@@ -67,7 +67,7 @@ public class MoneyBlock extends Block{
     public void open(){
 
         String[] status=this.status.split(",");
-        this.status=status[0]+","+status[1]+",open"+status[3];
+        this.status=status[0]+","+status[1]+",open,"+status[3];
 
     }
     public void take(int i){

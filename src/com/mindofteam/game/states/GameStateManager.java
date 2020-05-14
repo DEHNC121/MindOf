@@ -14,7 +14,7 @@ public class GameStateManager
     private ArrayList <GameState> states;
 
     public  static Vector2f map;
-    private static GameState currentState;
+    private GameState currentState;
 
     public static final int PLAY = 0;
     public static final int MENU = 1;

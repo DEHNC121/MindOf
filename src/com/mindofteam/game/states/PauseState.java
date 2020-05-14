@@ -15,25 +15,26 @@ import java.awt.*;
 public class PauseState extends GameState
 {
     private static GameStateManager gsm;
-    private static Vector2f v;
     private Font font;
     private int k;
-    public static Vector2f map;
     private boolean one_down;
     private boolean one_up;
     private static int ILO=2;
     private String[] Mane_pause;
+    private TileManager tm;
+    private Vector2f map;
+    private static Player player;
 
-    public PauseState(GameStateManager gsm, Vector2f v, Vector2f map) {
+    public PauseState(GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
         this.gsm=gsm;
-        this.v=v;
-        this.map=map;
-        Vector2f.setWorldVar(map.x, map.y);
         this.font = new Font ("font/font.png", 10, 10);
+        this.map=map;
         this.k=ILO-1;
         this.one_down=true;
         this.one_up=true;
+        this.tm=tm;
+        player=p;
         this.Mane_pause=new String[ILO];
         this.Mane_pause[0]=" RESUME";
         this.Mane_pause[1]=" RESTART";
@@ -66,8 +67,8 @@ public class PauseState extends GameState
             if(k==1) restart();
         }
     }
-    public static void unPause(){
-        gsm.set(new PlayState(gsm, v, map));
+    public void unPause(){
+        gsm.set(new PlayState(gsm, map, tm, player));
     }
 
     public static void restart(){
