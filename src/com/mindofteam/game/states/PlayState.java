@@ -33,17 +33,17 @@ public class PlayState extends GameState
         return staticFont;
     }
 
-    public PlayState (GameStateManager gsm)
+    public PlayState (GameStateManager gsm,int px,int py)
     {
         super(gsm);
         this.gsm=gsm;
-        map = new Vector2f();
+        map = new Vector2f(px,py);
         Vector2f.setWorldVar(map.x, map.y);
 
         tm = new TileManager ("tile/Map.xml");
         font = new Font ("font/font.png", 10, 10);
         staticFont=new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/hero.png"), new Vector2f(0 + (GamePanel.width / 2) - 32, 0 + (GamePanel.height / 2) - 32), 86);
+        player = new Player(new Sprite("entity/hero.png"), new Vector2f(px + (GamePanel.width / 2) - 32, py + (GamePanel.height / 2) - 32), 86);
         message=new Message();
         currentMessage=null;
     }
@@ -54,10 +54,9 @@ public class PlayState extends GameState
         this.map = map;
         Vector2f.setWorldVar(map.x, map.y);
         this.tm=tm;
-        this.font=new Font ("font/font.png", 10, 10);
-        staticFont=new Font ("font/font.png", 10, 10);
+        this.font=PlayState.staticFont;
         message=new Message();
-        player = new Player(new Sprite("entity/hero.png"),  p.getPos(), 86);
+        player = new Player(p.getSprite(),  p.getPos(), 86);
         player.setGold(p.getGold());
         currentMessage=null;
         Vector2f.setWorldVar(map.x, map.y);
@@ -103,7 +102,6 @@ public class PlayState extends GameState
             i--;
         }
         player.render(g);
-        System.out.println(player.getPos().x+" "+player.getPos().y);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
     }

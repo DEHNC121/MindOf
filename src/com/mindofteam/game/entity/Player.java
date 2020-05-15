@@ -19,9 +19,12 @@ public class Player extends Entity
     public boolean paused;
     private int gold;
 
+    protected Sprite sprite;
+
     public Player (Sprite sprite, Vector2f orgin, int size)
     {
         super (sprite, orgin, size);
+        this.sprite=sprite;
         paused=false;
         acc = 2f;
         maxSpeed = 3f;
@@ -33,6 +36,10 @@ public class Player extends Entity
         staminaThread= Executors.newSingleThreadExecutor();
         stamina();
         gold=0;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 
     public void move ()

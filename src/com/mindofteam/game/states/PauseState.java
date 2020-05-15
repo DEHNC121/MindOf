@@ -28,7 +28,6 @@ public class PauseState extends GameState
     public PauseState(GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
         this.gsm=gsm;
-        this.font = new Font ("font/font.png", 10, 10);
         this.map=map;
         Vector2f.setWorldVar(map.x, map.y);
         this.font = PlayState.getStaticFont();
@@ -72,12 +71,15 @@ public class PauseState extends GameState
             if(k==2) exit();
         }
     }
+
     public void unPause(){
         gsm.set(new PlayState(gsm, map, tm, player));
     }
 
+
+
     public static void restart(){
-        gsm.set(new PlayState(gsm));
+        gsm.set(new PlayState(gsm,760,880));
     }
 
     public static void exit(){
