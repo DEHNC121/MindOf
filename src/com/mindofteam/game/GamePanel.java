@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements Runnable
     {
         if (g != null)
         {
-            g.setColor(new Color (66, 134, 214));
+            g.setColor(new Color (22, 104, 4));
             g.fillRect(0, 0, width, height);
             gsm.render(g);
         }

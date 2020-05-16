@@ -94,7 +94,7 @@ public class PauseState extends GameState
         //tm.render(g);
 
         for (int i=0;i<Mane_pause.size();i++){
-            Sprite.drawArray(g, font,Mane_pause.get(i), new Vector2f (GamePanel.width /2-(Mane_pause.get(i).length()*30) , GamePanel.height/4+55*i), 62, 62, 42, 0);
+            Sprite.drawArray(g, font,Mane_pause.get(i), new Vector2f (GamePanel.width /2-(Mane_pause.get(i).length()*25) , GamePanel.height/4+55*i), 62, 62, 42, 0);
         }
 
         Sprite.drawArray(g, font,">", new Vector2f (GamePanel.width /2-260 , GamePanel.height/4+55*k), 62, 62, 42, 0);

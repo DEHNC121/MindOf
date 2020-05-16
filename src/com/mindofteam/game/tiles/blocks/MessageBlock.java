@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class MessageBlock extends Block
 {
-    private  boolean visited;
+    private boolean visited;
     public static int count=0;
     public int id;
     public MessageBlock(BufferedImage img, Vector2f pos, int w, int h) {
