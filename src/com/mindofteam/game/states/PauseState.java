@@ -24,6 +24,7 @@ public class PauseState extends GameState
     private TileManager tm;
     private Vector2f map;
     private static Player player;
+    private int stamina;
 
     public PauseState(GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
@@ -37,6 +38,7 @@ public class PauseState extends GameState
         this.tm=tm;
         player=p;
         this.Mane_pause=new ArrayList<String>();
+        stamina=player.getStamina();
 
         Mane_pause.add("RESUME");
         Mane_pause.add("RESTART");
@@ -73,6 +75,7 @@ public class PauseState extends GameState
     }
 
     public void unPause(){
+        player.setStamina(stamina);
         gsm.set(new PlayState(gsm, map, tm, player));
     }
 

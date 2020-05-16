@@ -44,7 +44,7 @@ public class Player extends Entity
 
     public void move ()
     {
-        if(run){ bonus=3f; }
+        if(run && stamina>3){ bonus=3f; }
         else { bonus=0f; }
 
         // up_left
@@ -162,8 +162,8 @@ public class Player extends Entity
     {
         if(!paused){
             super.update ();
-            move ();
             stamina();
+            move ();
             if (!bounds.collisionTile (dx, 0))
             {
                 PlayState.map.x += dx;
@@ -264,4 +264,5 @@ public class Player extends Entity
     public int getStamina(){
         return stamina;
     }
+    public void setStamina(int s){ stamina=s; }
 }

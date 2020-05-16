@@ -58,6 +58,7 @@ public class PlayState extends GameState
         message=new Message();
         player = new Player(p.getSprite(),  p.getPos(), 86);
         player.setGold(p.getGold());
+        player.setStamina(p.getStamina());
         currentMessage=null;
         Vector2f.setWorldVar(map.x, map.y);
     }
