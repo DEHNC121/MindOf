@@ -122,12 +122,27 @@ public class Sprite
 
     public static void drawArray (Graphics2D g, Font f, String word, Vector2f pos, int width, int height, int xOffset, int yOffset)
     {
-        float x = pos.x;
-        float y = pos.y;
 
+
+        int il=0;
         for (int i = 0; i < word.length(); i++)
         {
-            if (word.charAt(i) != 32)
+            if (word.charAt(i)=='\n'){
+                il++;
+            }
+        }
+        float x = pos.x;
+        float y = pos.y-il*(30+xOffset);
+        for (int i = 0; i < word.length(); i++)
+        {
+            if (word.charAt(i)=='\n')
+            {
+                il--;
+                x -=xOffset;
+                y += 30;
+                x-=i*(xOffset);
+            }
+            else if (word.charAt(i) != 32)
             {
                 g.drawImage(f.getFont(word.charAt(i)), (int) x, (int) y, width, height, null );
             }

@@ -10,13 +10,19 @@ import java.awt.*;
 
 public class Message {
     private static String[] tab={
-            "This is the game called MindOf",
-            "This is the game called MindOf",
+            "Adam Kabka\n1995-2020",
+            "Adam Kabka\n1995-2020",
+            "This is the\n game called MindOf",
+            "This is the\n game called MindOf",
+            "Marta Kabka",
+            "Marta Kabka",
+            "Danger\nplace",
+            "Danger\nplace",
             "You can run by pressing 'K'",
             "You can run by pressing 'K'"
     };
 
-    private static Font font= new Font ("font/font.png", 10, 10);
+    private static Font font= PlayState.getStaticFont();
 
     public static void print(int i){
        if(i<tab.length) PlayState.notify(tab[i]);
