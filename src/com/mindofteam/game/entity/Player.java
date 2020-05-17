@@ -171,7 +171,17 @@ public class Player extends Entity
             if (!tileCollision.collisionTile (dx, 0))
             {
                 if  (PlayState.map.x + dx<= TileManager.width*64-GamePanel.width && PlayState.map.x + dx>0){
-                    PlayState.map.x += dx;
+                   if (PlayState.map.x +GamePanel.width/2>pos.x){
+                       if (dx<0){
+                           PlayState.map.x += dx;
+                       }
+                   }else if (PlayState.map.x +GamePanel.width/2<pos.x){
+                       if (dx>0){
+                           PlayState.map.x += dx;
+                       }
+                   }else {
+                       PlayState.map.x += dx;
+                   }
                 }
                 pos.x += dx;
 
@@ -179,12 +189,20 @@ public class Player extends Entity
             if (!tileCollision.collisionTile (0, dy))
             {
                 if  (PlayState.map.y + dy<= TileManager.height*64-GamePanel.height && PlayState.map.y + dy>0){
-                    PlayState.map.y += dy;
+                    if (PlayState.map.y +GamePanel.height/2>pos.y){
+                        if (dy<0){
+                            PlayState.map.y += dy;
+                        }
+                    }else if (PlayState.map.y +GamePanel.height/2<pos.y){
+                        if (dy>0){
+                            PlayState.map.y += dy;
+                        }
+                    }else {
+                        PlayState.map.y += dy;
+                    }
                 }
                 pos.y += dy;
             }
-
-            PlayState.notify(pos.x+","+pos.y);
         }
     }
 
