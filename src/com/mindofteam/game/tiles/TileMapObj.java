@@ -8,10 +8,12 @@ import com.mindofteam.game.util.Vector2f;
 import java.awt.*;
 import java.util.HashMap;
 
+
+
 public class TileMapObj extends TileMap
 {
 
-    public static Block [] event_blocks;
+    public static HashMap <String, Block> event_blocks;
 
     private int tileWidth;
     private int tileHeight;
@@ -19,10 +21,11 @@ public class TileMapObj extends TileMap
     public static int width;
     public static int height;
 
+
     public TileMapObj (String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns)
     {
         Block tempBlock;
-        event_blocks = new Block [width * height];
+        event_blocks = new HashMap<String, Block>();
 
 
         this.tileWidth = tileWidth;
@@ -60,18 +63,13 @@ public class TileMapObj extends TileMap
                     tempBlock = new MoneyBlock("silver,key,closed,1",sprite,sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight,(int) (i % width), (int) (i / height));
 
                 }
-                else if (temp == 6) {
-
-                    tempBlock = new KeyBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-
-                }
                 else {
                     //test
                     tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
 
                 }
 
-                event_blocks [i] = tempBlock;
+                event_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
             }
         }
     }
@@ -85,9 +83,9 @@ public class TileMapObj extends TileMap
         {
             for (int j = y; j < y + (cam.getHeight () / tileHeight); j++)
             {
-                if (event_blocks [i + (j * height)] != null)
+                if (event_blocks.get(String.valueOf(i) + "," + String.valueOf(j))!= null)
                 {
-                    event_blocks [i + (j * height)].render (g);
+                    event_blocks.get(String.valueOf(i) + "," + String.valueOf(j)).render (g);
                 }
             }
         }

@@ -11,24 +11,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
+
+
 public class TileMapNorm extends TileMap
 {
 
-    public Block[] blocks;
+    public HashMap <String, Block> blocks;
     private int tileWidth;
     private int tileHeight;
 
     private int height;
     private int width;
 
-    public Block[] getBlocks() {
+    public HashMap<String, Block> getBlocks() {
         return blocks;
     }
 
     public TileMapNorm (String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns)
     {
 
-        blocks = new Block [width * height];
+        Block tempBlock;
+
+        blocks = new HashMap<String, Block>();
 
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
@@ -41,7 +45,8 @@ public class TileMapNorm extends TileMap
             int temp = Integer.parseInt(block [i].replaceAll("\\s+", ""));
             if (temp != 0)
             {
-                blocks [i] = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
+                blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
             }
         }
 
@@ -56,9 +61,9 @@ public class TileMapNorm extends TileMap
         {
             for (int j = y; j < y + (cam.getHeight () / tileHeight); j++)
             {
-                if (blocks [i + (j * height)] != null)
+                if (blocks.get(String.valueOf(i) + "," + String.valueOf(j))!= null)
                 {
-                    blocks [i + (j * height)].render (g);
+                    blocks.get(String.valueOf(i) + "," + String.valueOf(j)).render (g);
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.mindofteam.game.entity;
 
+import com.mindofteam.game.GamePanel;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.states.PlayState;
 import com.mindofteam.game.util.KeyHandler;
