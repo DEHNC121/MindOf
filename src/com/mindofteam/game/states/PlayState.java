@@ -115,10 +115,9 @@ public class PlayState extends GameState
         if(keys!=player.getKeys() || j>=0){
             if (keys!=player.getKeys()){
                 j=20;
-                if(keys<player.getKeys()) plus=1;
-                else plus=0;
+                plus=player.getKeys()-keys;
             }
-            Sprite.drawArray(g, font, (plus>0)? "+1": "-1" ,new Vector2f (keyStr.length()*32, 40), 32, 32, 24, 0);
+            Sprite.drawArray(g, font, (plus>0)? "+"+String.valueOf(plus) : String.valueOf(plus) ,new Vector2f (keyStr.length()*32, 40), 32, 32, 24, 0);
             keys=player.getKeys();
             j--;
         }
@@ -143,6 +142,7 @@ public class PlayState extends GameState
         player.takeKey();
     }
     public static boolean checkKey(){ return player.getKeys()>0; }
+    public static boolean checkDoubleKey(){ return player.getKeys()>1; }
     public static void pause(){
         gsm.set(new PauseState(gsm, map, tm, player));
     }

@@ -49,7 +49,10 @@ public class MoneyBlock extends Block{
 
         String[] status=this.status.split(",");
         this.status=status[0]+","+status[1]+",open"+","+status[3];
-        //if(status[1].equals("key")) PlayState.takeKey();
+        if(status[1].equals("key")){
+            PlayState.takeKey();
+            if(status[0].equals("gold")) PlayState.takeKey();
+        }
         ((MoneyBlock) TileMapObj.event_blocks.get(String.valueOf(x +i) + "," + String.valueOf(y))).open();
 
         if (status[0].equals("gold")){
@@ -132,6 +135,13 @@ public class MoneyBlock extends Block{
                 }
             }
             else{
+                if (status[0].equals("gold") && PlayState.checkDoubleKey()){
+                    PlayState.notify("Press 'E' to open (-2 keys)");
+                    if (PlayState.do_id&& do_one){
+                        open(s);
+                        do_one=false;
+                    }
+                }
                 if(PlayState.checkKey()){
                     PlayState.notify("Press 'E' to open (-1 key)");
                     if (PlayState.do_id&& do_one){
@@ -139,6 +149,7 @@ public class MoneyBlock extends Block{
                         do_one=false;
                     }
                 }
+                else if (status[0].equals("gold")) PlayState.notify("You need two keys to open this chest");
                 else PlayState.notify("You need a key to open this chest");
             }
         }else {
