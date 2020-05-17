@@ -41,6 +41,9 @@ public class PlayState extends GameState
         Vector2f.setWorldVar(map.x, map.y);
 
         cam = new Camera (new AABB (new Vector2f (), GamePanel.width, GamePanel.height));
+        //cam = new Camera (new AABB (new Vector2f (), 900, 600));
+
+
 
         tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
