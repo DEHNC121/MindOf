@@ -169,12 +169,14 @@ public class Player extends Entity
 //                //PlayState.map.x += dx;
 //                pos.x += dx;
 //            }
+            PlayState.map.x += dx;
             pos.x += dx;
 //            if (!bounds.collisionTile (0, dy))
 //            {
 //                //PlayState.map.y += dy;
 //                pos.y += dy;
 //            }
+            PlayState.map.y += dy;
             pos.y += dy;
         }
     }

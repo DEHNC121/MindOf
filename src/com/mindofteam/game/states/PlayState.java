@@ -40,7 +40,7 @@ public class PlayState extends GameState
         map = new Vector2f(px,py);
         Vector2f.setWorldVar(map.x, map.y);
 
-        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - 800 / 2, GamePanel.height / 2 - 600 / 2), 800, 800));
+        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - GamePanel.width / 2, GamePanel.height / 2 - GamePanel.height / 2), GamePanel.width, GamePanel.height));
 
         tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
