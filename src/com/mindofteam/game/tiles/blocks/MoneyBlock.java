@@ -142,7 +142,7 @@ public class MoneyBlock extends Block{
                         do_one=false;
                     }
                 }
-                if(PlayState.checkKey()){
+                else if(PlayState.checkKey()){
                     PlayState.notify("Press 'E' to open (-1 key)");
                     if (PlayState.do_id&& do_one){
                         open(s);
