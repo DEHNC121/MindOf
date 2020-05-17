@@ -24,10 +24,10 @@ public class TileCollision
             if (TileMapObj.event_blocks.get(String.valueOf(xt) + "," + String.valueOf(yt)) != null)
             {
                 Block block = TileMapObj.event_blocks.get(String.valueOf(xt) + "," + String.valueOf(yt));
-                if (block instanceof HoleBlock)
-                {
-                    return collisionHole (ax, ay, xt, yt, block);
-                }
+//                if (block instanceof HoleBlock)
+//                {
+//                    return collisionHole (ax, ay, xt, yt, block);
+//                }
                 return block.update (e.getBounds ());
             }
         }
