@@ -14,12 +14,16 @@ import java.util.Vector;
 public class TileMapNorm extends TileMap
 {
 
-    public static Block [] blocks;
+    public Block[] blocks;
     private int tileWidth;
     private int tileHeight;
 
     private int height;
     private int width;
+
+    public Block[] getBlocks() {
+        return blocks;
+    }
 
     public TileMapNorm (String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns)
     {

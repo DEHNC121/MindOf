@@ -52,9 +52,9 @@ public class MoneyBlock extends Block{
         ((MoneyBlock)TileMapObj.event_blocks[x+(y*h)]).open();
 
         if (status[0].equals("gold")){
-            TileMapNorm.blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
-            TileMapNorm.blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
-//            ((TileMapNorm) PlayState.getTm().getTm(4)).g getEvent_blocks()[x+(y*h)].replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
+            ((TileMapNorm) PlayState.getTm().getTm(4)).blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
+            ((TileMapNorm) PlayState.getTm().getTm(4)).blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getEvent_blocks()[x+(y*h)].replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
 //            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
 
         }
@@ -62,8 +62,8 @@ public class MoneyBlock extends Block{
         if (status[0].equals("silver")){
 //            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
 //            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
-            TileMapNorm.blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
-            TileMapNorm.blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
+            ((TileMapNorm) PlayState.getTm().getTm(4)).blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
+            ((TileMapNorm) PlayState.getTm().getTm(4)).blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
         }
     }
 
