@@ -2,6 +2,7 @@ package com.mindofteam.game.tiles;
 
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.blocks.*;
+import com.mindofteam.game.util.AABB;
 import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
@@ -10,13 +11,28 @@ import java.util.HashMap;
 public class TileMapObj extends TileMap
 {
 
-    public static HashMap <String, Block> tmo_blocks;
+    //public static HashMap <String, Block> tmo_blocks;
+
+    public static Block [] event_blocks;
+
+    private int tileWidth;
+    private int tileHeight;
+
+    public static int width;
+    public static int height;
 
     public TileMapObj (String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns)
     {
         Block tempBlock;
+        event_blocks = new Block [width * height];
 
-        tmo_blocks = new HashMap<String, Block>();
+        // tmo_blocks = new HashMap<String, Block>();
+
+        this.tileWidth = tileWidth;
+        this.tileHeight = tileHeight;
+
+        TileMapObj.width = width;
+        TileMapObj.height = height;
 
         String [] block = data.split(",");
         for (int i = 0; i < (width * height); ++i)
@@ -52,22 +68,31 @@ public class TileMapObj extends TileMap
                     tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
 
                 }
-                tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
+                //tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
+                event_blocks [i] = tempBlock;
             }
         }
     }
 
-
-    public HashMap<String, Block> getTmo_blocks() {
-        return tmo_blocks;
+    public Block [] getTmo_blocks ()
+    {
+        return event_blocks;
     }
 
-    @Override
-    public void render(Graphics2D g)
+
+    public void render(Graphics2D g, AABB cam)
     {
-        for (Block block : tmo_blocks.values())
+        int x = (int) (cam.getPos ().getCamVar ().x / tileWidth);
+        int y = (int) (cam.getPos ().getCamVar ().y / tileHeight);
+        for (int i = x; i < x * (cam.getWidth () / tileWidth); i++)
         {
-            block.render (g);
+            for (int j = y; j < y * (cam.getHeight () / tileHeight); j++)
+            {
+                if (event_blocks [i + (j * height)] != null)
+                {
+                    event_blocks [i + (j * height)].render (g);
+                }
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.mindofteam.game.tiles;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.blocks.Block;
 import com.mindofteam.game.tiles.blocks.NormBlock;
+import com.mindofteam.game.util.AABB;
 import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
@@ -13,36 +14,48 @@ import java.util.Vector;
 public class TileMapNorm extends TileMap
 {
 
-    public HashMap<String, Block> tmo_blocks;
+    public static Block [] blocks;
+    private int tileWidth;
+    private int tileHeight;
+
+    private int height;
+    private int width;
 
     public TileMapNorm (String data, Sprite sprite, int width, int height, int tileWidth, int tileHeight, int tileColumns)
     {
-        Block tempBlock;
 
-        tmo_blocks = new HashMap<String, Block>();
+        blocks = new Block [width * height];
+
+        this.tileWidth = tileWidth;
+        this.tileHeight = tileHeight;
+
+        this.height = height;
+
         String [] block = data.split(",");
         for (int i = 0; i < (width * height); ++i)
         {
             int temp = Integer.parseInt(block [i].replaceAll("\\s+", ""));
             if (temp != 0)
             {
-                tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
-                tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
+                blocks [i] = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int)((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
             }
         }
 
     }
 
-    public HashMap<String, Block> getTmo_blocks() {
-        return tmo_blocks;
-    }
-
-    @Override
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, AABB cam)
     {
-        for (Block block : tmo_blocks.values())
+        int x = (int) (cam.getPos ().getCamVar ().x / tileWidth);
+        int y = (int) (cam.getPos ().getCamVar ().y / tileHeight);
+        for (int i = x; i < x * (cam.getWidth () / tileWidth); i++)
         {
-            block.render (g);
+            for (int j = y; j < y * (cam.getHeight () / tileHeight); j++)
+            {
+                if (blocks [i + (j * height)] != null)
+                {
+                    blocks [i + (j * height)].render (g);
+                }
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.mindofteam.game.tiles;
 
 
 import com.mindofteam.game.graphics.Sprite;
+import com.mindofteam.game.util.Camera;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Document;
@@ -18,6 +19,7 @@ public class TileManager
 {
 
     public static ArrayList <TileMap> tm;
+    public Camera cam;
 
     public TileMap getTm(int i) {
         return tm.get(i);
@@ -28,13 +30,13 @@ public class TileManager
         tm = new ArrayList<TileMap>();
     }
 
-    public TileManager (String path)
+    public TileManager (String path, Camera cam)
     {
         tm = new ArrayList<TileMap>();
-        addTileMap (path, 64, 64);
+        addTileMap (path, 64, 64, cam);
     }
 
-    private void addTileMap (String path, int blockWidth, int blockHeight)
+    private void addTileMap (String path, int blockWidth, int blockHeight, Camera cam)
     {
         String imagePath;
         int width = 0;
@@ -45,6 +47,7 @@ public class TileManager
         int tileColumns;
         int layers = 0;
         Sprite sprite;
+        this.cam = cam;
 
         String [] data = new String [10];
 
@@ -103,9 +106,13 @@ public class TileManager
 
     public void render (Graphics2D g)
     {
+        if (cam == null)
+        {
+            return;
+        }
         for (int i = 0; i < tm.size(); ++i)
         {
-            tm.get(i).render(g);
+            tm.get(i).render(g, cam.getBounds ());
         }
     }
 

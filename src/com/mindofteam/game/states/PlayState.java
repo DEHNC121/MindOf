@@ -5,9 +5,7 @@ import com.mindofteam.game.entity.Player;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.Message;
 import com.mindofteam.game.tiles.TileManager;
-import com.mindofteam.game.util.KeyHandler;
-import com.mindofteam.game.util.MouseHandler;
-import com.mindofteam.game.util.Vector2f;
+import com.mindofteam.game.util.*;
 import com.mindofteam.game.graphics.Font;
 
 import java.awt.*;
@@ -22,6 +20,8 @@ public class PlayState extends GameState
     private Message message;
     private static String currentMessage;
     public static boolean do_id=false;
+
+    private Camera cam;
 
     public static Vector2f map;
 
@@ -40,7 +40,9 @@ public class PlayState extends GameState
         map = new Vector2f(px,py);
         Vector2f.setWorldVar(map.x, map.y);
 
-        tm = new TileManager ("tile/Map.xml");
+        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - 800 / 2, GamePanel.height / 2 - 600 / 2), 800, 800));
+
+        tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
         staticFont=new Font ("font/font.png", 10, 10);
         player = new Player(new Sprite("entity/hero.png"), new Vector2f(px + (GamePanel.width / 2) - 32, py + (GamePanel.height / 2) - 32), 86);
@@ -53,6 +55,9 @@ public class PlayState extends GameState
         this.gsm=gsm;
         this.map = map;
         Vector2f.setWorldVar(map.x, map.y);
+
+        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - 800 / 2, GamePanel.height / 2 - 600 / 2), 800, 800));
+
         this.tm=tm;
         this.font=PlayState.staticFont;
         message=new Message();
@@ -68,6 +73,7 @@ public class PlayState extends GameState
         Vector2f.setWorldVar(map.x, map.y);
         player.update();
         player.stamina();
+        cam.update ();
     }
 
     @Override
@@ -103,6 +109,7 @@ public class PlayState extends GameState
             i--;
         }
         player.render(g);
+        cam.render (g);
         if(currentMessage!=null) print(currentMessage,g);
         currentMessage=null;
     }

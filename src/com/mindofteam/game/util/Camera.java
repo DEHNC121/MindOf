@@ -1,50 +1,65 @@
-package com.mindofteam.game.entity;
+package com.mindofteam.game.util;
 
-import com.mindofteam.game.graphics.Sprite;
+import com.mindofteam.game.entity.Entity;
 import com.mindofteam.game.states.PlayState;
-import com.mindofteam.game.util.KeyHandler;
-import com.mindofteam.game.util.MouseHandler;
-import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-public class Player extends Entity
+public class Camera
 {
 
-    private int stamina;
+    private AABB collisionCam;
+    private AABB bounds;
+
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
+
+    private float dx;
+    private float dy;
+    private float maxSpeed = 4f;
+    private float acc = 1f;
+    private float deacc = 0.3f;
+    public int stamina;
     public int pause;
     private Executor staminaThread;
     public boolean paused;
-    private int gold;
+    private int widthLimit;
+    private int heightLimit;
+    protected boolean attack;
+    protected boolean run;
+    protected Vector2f pos;
+    float bonus=0f;
 
-    protected Sprite sprite;
 
-    public Player (Sprite sprite, Vector2f orgin, int size)
+    private Entity e;
+
+    public Camera (AABB collisionCam)
     {
-        super (sprite, orgin, size);
-        this.sprite=sprite;
-        paused=false;
-        acc = 2f;
-        maxSpeed = 3f;
-        bounds.setWidth (30);
-        bounds.setHeight (13);
-        bounds.setxOffset (20);
-        bounds.setyOffset (70);
-        stamina=10;
-        staminaThread= Executors.newSingleThreadExecutor();
-        stamina();
-        gold=0;
+        this.collisionCam = collisionCam;
     }
 
-    public Sprite getSprite() {
-        return sprite;
+    public void setLimit (int widthLimit, int heightLimit)
+    {
+        this.widthLimit = widthLimit;
+        this.heightLimit = heightLimit;
+    }
+    public AABB getBounds ()
+    {
+        return collisionCam;
+    }
+    public void update ()
+    {
+        move ();
+        PlayState.map.x += dx;
+        PlayState.map.y += dy;
     }
 
     public void move ()
     {
-        if(run && stamina>3){ bonus=3f; }
+        if(run){ bonus=3f; }
         else { bonus=0f; }
 
         // up_left
@@ -158,95 +173,76 @@ public class Player extends Entity
         }
     }
 
-    public void update ()
-    {
-        if(!paused){
-            super.update ();
-            stamina();
-            move ();
-            if (!bounds.collisionTile (dx, 0))
-            {
-                //PlayState.map.x += dx;
-                pos.x += dx;
-            }
-
-            if (!bounds.collisionTile (0, dy))
-            {
-                //PlayState.map.y += dy;
-                pos.y += dy;
-            }
-        }
-    }
-
-    @Override
-    public void render (Graphics2D g)
-    {
-        if(!paused){
-            g.setColor (Color.red);
-            g.drawRect ((int) (pos.getWorldVar ().x + bounds.getXOffset ()), (int) (pos.getWorldVar ().y + bounds.getYOffset ()), (int) bounds.getWidth (), (int) bounds.getHeight ());
-            g.drawImage (ani.getImage (), (int) (pos.getWorldVar ().x), (int) (pos.getWorldVar ().y), size, size, null);
-
-        }
-        //System.out.println(gold);
-    }
-
     public void input (MouseHandler mouse, KeyHandler key)
     {
-        if (key.pause.down && !paused){
-            PlayState.pause();
-            paused=true;
+        if (e == null)
+        {
+            if (key.pause.down && !paused)
+            {
+                PlayState.pause ();
+                paused = true;
+            }
+            if (!paused)
+            {
+                boolean moving = false;
+                if (mouse.getButton () == 1)
+                {
+                    System.out.println ("Player: " + pos.x + ", " + pos.y);
+                }
+                if (key.up.down)
+                {
+                    up = true;
+                    moving = true;
+                }
+                else
+                {
+                    up = false;
+                }
+                if (key.down.down)
+                {
+                    down = true;
+                    moving = true;
+                }
+                else
+                {
+                    down = false;
+                }
+                if (key.left.down)
+                {
+                    left = true;
+                    moving = true;
+                }
+                else
+                {
+                    left = false;
+                }
+                if (key.right.down)
+                {
+                    right = true;
+                    moving = true;
+                }
+                else
+                {
+                    right = false;
+                }
+                if (key.run.down && moving)
+                {
+                    run = true;
+                }
+                else
+                {
+                    run = false;
+                }
+                if (key.attack.down && !key.run.down)
+                {
+                    attack = true;
+                }
+                else
+                {
+                    attack = false;
+                }
+            }
         }
-        if(!paused){
-            boolean moving=false;
-            if (mouse.getButton () == 1) {
-                System.out.println ("Player: " + pos.x + ", " + pos.y);
-            }
-            if (key.up.down) {
-                up = true;
-                moving=true;
-            }
-            else {
-                up = false;
-            }
-            if (key.down.down) {
-                down = true;
-                moving=true;
-            }
-            else {
-                down=false;
-            }
-            if (key.left.down) {
-                left = true;
-                moving=true;
-            }
-            else {
-                left = false;
-            }
-            if (key.right.down) {
-                right = true;
-                moving=true;
-            }
-            else {
-                right=false;
-            }
-            if(key.run.down && moving) {
-                run=true;
-            }
-            else {
-                run=false;
-            }
-            if (key.attack.down && !key.run.down) {
-                attack = true;
-            }
-            else {
-                attack = false;
-            }
-        }
-    }
-
-    public void setGold(int g){
-        gold+=g;
-        if(gold<0) gold=0;
     }
 
     public void stamina() {
@@ -258,11 +254,17 @@ public class Player extends Entity
             } catch (Exception e) {}
         });
     }
-    public int getGold(){
-        return gold;
+
+    public void target (Entity e)
+    {
+        this.e = e;
+        deacc = e.getDeacc ();
+        maxSpeed = e.getMaxSpeed ();
     }
-    public int getStamina(){
-        return stamina;
+
+    public void render (Graphics g)
+    {
+        g.setColor (Color.blue);
+        g.drawRect ((int) collisionCam.getPos ().x, (int) collisionCam.getPos ().y, (int)collisionCam.getWidth (), (int)collisionCam.getHeight ());
     }
-    public void setStamina(int s){ stamina=s; }
 }

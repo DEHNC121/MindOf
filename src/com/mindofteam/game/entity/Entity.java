@@ -43,6 +43,8 @@ public abstract class Entity
     protected float dx;
     protected float dy;
 
+    protected boolean isFallen;
+
     protected float maxSpeed = 3f;
     protected float acc = 1f;
     protected float deacc = 1f;
@@ -71,11 +73,19 @@ public abstract class Entity
     public void setAcc (float f) { acc = f; }
     public void setDeacc (float f) { deacc = f; }
 
+    public float getDeacc () { return deacc;}
+    public float getMaxSpeed () { return maxSpeed; }
+
     public AABB getBounds () { return bounds; }
 
     public Vector2f getPos(){ return pos; }
     public int getSize () { return size; }
     public Animation getAnimation () { return ani; }
+
+    public void setFallen (boolean s)
+    {
+        isFallen = s;
+    }
 
     public void setAnimation (int i, BufferedImage [] frames, int delay)
     {
