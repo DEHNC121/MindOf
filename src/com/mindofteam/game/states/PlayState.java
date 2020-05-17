@@ -64,6 +64,7 @@ public class PlayState extends GameState
         player = new Player(p.getSprite(),  p.getPos(), 86);
         player.setGold(p.getGold());
         player.setStamina(p.getStamina());
+        player.setKeys(p.getKeys());
         currentMessage=null;
         Vector2f.setWorldVar(map.x, map.y);
     }
@@ -85,10 +86,12 @@ public class PlayState extends GameState
             do_id=false;
         }
     }
-
+    private int plus=0;
+    private int keys=0;
     private int gold=0;
     private int add=0;
     private int i=0;
+    private int j=0;
     @Override
     public void render(Graphics2D g)
     {
@@ -98,15 +101,28 @@ public class PlayState extends GameState
         for(int i=0; i<player.getStamina(); i++) sb.append("+");
         Sprite.drawArray(g, font, GamePanel.oldFrameCount + " FPS", new Vector2f (GamePanel.width - 192, 52), 32, 32, 24, 0);
         Sprite.drawArray(g, font, sb.toString(), new Vector2f (GamePanel.width - 492, 10), 32, 32, 24, 0);
-        Sprite.drawArray(g, font, "Gold: "+player.getGold(), new Vector2f (10, 10), 32, 32, 24, 0);
+        String goldStr="Gold: "+player.getGold();
+        String keyStr="Keys: "+player.getKeys();
+        Sprite.drawArray(g, font, goldStr, new Vector2f (10, 10), 32, 32, 24, 0);
+        Sprite.drawArray(g, font, keyStr, new Vector2f (10, 40), 32, 32, 24, 0);
         if (gold!=player.getGold() || i>=0){
             if (gold!=player.getGold()){
                 i=20;
                 add=player.getGold()-gold;
             }
-            Sprite.drawArray(g, font, (add < 0) ? String.valueOf(add) : "+ "+String.valueOf(add), new Vector2f (15, 40), 32, 32, 24, 0);
+            Sprite.drawArray(g, font, (add < 0) ? String.valueOf(add) : "+ "+String.valueOf(add), new Vector2f (goldStr.length()*32, 10), 32, 32, 24, 0);
             gold=player.getGold();
             i--;
+        }
+        if(keys!=player.getKeys() || j>=0){
+            if (keys!=player.getKeys()){
+                j=20;
+                if(keys<player.getKeys()) plus=1;
+                else plus=0;
+            }
+            Sprite.drawArray(g, font, (plus>0)? "+1": "-1" ,new Vector2f (keyStr.length()*32, 40), 32, 32, 24, 0);
+            keys=player.getKeys();
+            j--;
         }
         player.render(g);
         cam.render (g);
@@ -122,7 +138,13 @@ public class PlayState extends GameState
     public static void print(String s, Graphics2D g){
         Sprite.drawArray(g, staticFont, s, new Vector2f(GamePanel.width/2-(s.length()*10) , GamePanel.height-50), 25, 35, 20, 0);
     }
-
+    public static void addKey(){
+        player.addKey();
+    }
+    public static void takeKey(){
+        player.takeKey();
+    }
+    public static boolean checkKey(){ return player.getKeys()>0; }
     public static void pause(){
         gsm.set(new PauseState(gsm, map, tm, player));
     }

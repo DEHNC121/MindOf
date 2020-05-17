@@ -132,14 +132,14 @@ public class MoneyBlock extends Block{
                 }
             }
             else{
-//                if(PlayState.checkKey()){
-//                    PlayState.notify("Press 'E' to open (-1 key)");
-//                    if (PlayState.do_id&& do_one){
-//                        open(s);
-//                        do_one=false;
-//                    }
-//                }
-//                else PlayState.notify("You need a key to open this chest");
+                if(PlayState.checkKey()){
+                    PlayState.notify("Press 'E' to open (-1 key)");
+                    if (PlayState.do_id&& do_one){
+                        open(s);
+                        do_one=false;
+                    }
+                }
+                else PlayState.notify("You need a key to open this chest");
             }
         }else {
             if (status[3].equals("1")){

@@ -19,6 +19,7 @@ public class Player extends Entity
     private Executor staminaThread;
     public boolean paused;
     private int gold;
+    private int keys;
 
     protected Sprite sprite;
 
@@ -37,6 +38,7 @@ public class Player extends Entity
         staminaThread= Executors.newSingleThreadExecutor();
         stamina();
         gold=0;
+        keys=0;
     }
 
     public Sprite getSprite() {
@@ -265,4 +267,8 @@ public class Player extends Entity
         return stamina;
     }
     public void setStamina(int s){ stamina=s; }
+    public int getKeys(){ return keys; }
+    public void addKey(){ keys++; }
+    public void takeKey(){ if(keys>0) keys--; }
+    public void setKeys(int k){ keys=k; }
 }
