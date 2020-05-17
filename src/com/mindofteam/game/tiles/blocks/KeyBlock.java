@@ -2,6 +2,7 @@ package com.mindofteam.game.tiles.blocks;
 
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.states.PlayState;
+import com.mindofteam.game.tiles.TileMapNorm;
 import com.mindofteam.game.util.AABB;
 import com.mindofteam.game.util.Vector2f;
 
@@ -12,8 +13,11 @@ public class KeyBlock extends Block{
     private boolean taken;
     private BufferedImage img;
 
-    public KeyBlock(BufferedImage img, Vector2f pos, int w, int h, Sprite sprite) {
+    public KeyBlock(BufferedImage img, Vector2f pos, int w, int h, Sprite sprite,int x,int y) {
+
         super(img, pos, w, h);
+        this.x=x;
+        this.y=y;
         taken=false;
         this.img=sprite.getSprite(11, 39);
     }
@@ -24,6 +28,8 @@ public class KeyBlock extends Block{
             PlayState.notify("Press 'E' to pick up the key");
             if (PlayState.do_id){
                 PlayState.addKey();
+                ((TileMapNorm) PlayState.getTm().getTm(4)).blocks.remove(String.valueOf(x) + "," + String.valueOf(y));
+
                 taken=true;
             }
         }
