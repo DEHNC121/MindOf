@@ -76,9 +76,9 @@ public class TileMapObj extends TileMap
     {
         int x = (int) (cam.getPos ().getCamVar ().x / tileWidth);
         int y = (int) (cam.getPos ().getCamVar ().y / tileHeight);
-        for (int i = x; i < x * (cam.getWidth () / tileWidth); i++)
+        for (int i = x; i < x + (cam.getWidth () / tileWidth); i++)
         {
-            for (int j = y; j < y * (cam.getHeight () / tileHeight); j++)
+            for (int j = y; j < y + (cam.getHeight () / tileHeight); j++)
             {
                 if (event_blocks [i + (j * height)] != null)
                 {
