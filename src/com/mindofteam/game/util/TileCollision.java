@@ -19,9 +19,9 @@ public class TileCollision
     {
         for (int c = 0; c < 4; c++)
         {
-            int xt = (int) ((e.getBounds ().getPos ().x + ax) + ((c % 2) * e.getBounds ().getWidth () + e.getBounds ().getXOffset ()) / 64);
-            int yt = (int) ((e.getBounds ().getPos ().y + ay) + ((int)(c / 2) * e.getBounds ().getWidth () + e.getBounds ().getYOffset ()) / 64);
-            if (TileMapObj.event_blocks [xt + yt * TileMapObj.height] instanceof Block)
+            int xt = (int) ((e.getBounds().getPos().x + ax) + (c % 2) * e.getBounds().getWidth() + e.getBounds().getXOffset()) / 64;
+            int yt = (int) ((e.getBounds().getPos().y + ay) + (int)(c / 2) * e.getBounds().getWidth() + e.getBounds().getYOffset()) / 64;
+            if (TileMapObj.event_blocks[xt + yt * TileMapObj.height] != null)
             {
                 Block block = TileMapObj.event_blocks[xt + (yt * TileMapObj.height)];
                 if (block instanceof HoleBlock)

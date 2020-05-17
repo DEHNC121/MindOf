@@ -2,10 +2,7 @@ package com.mindofteam.game.entity;
 
 import com.mindofteam.game.graphics.Animation;
 import com.mindofteam.game.graphics.Sprite;
-import com.mindofteam.game.util.AABB;
-import com.mindofteam.game.util.KeyHandler;
-import com.mindofteam.game.util.MouseHandler;
-import com.mindofteam.game.util.Vector2f;
+import com.mindofteam.game.util.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -53,6 +50,8 @@ public abstract class Entity
     protected AABB hitBounds;
     protected AABB bounds;
 
+    protected TileCollision tileCollision;
+
     public Entity (Sprite sprite, Vector2f orgin, int size)
     {
         this.sprite = sprite;
@@ -64,6 +63,8 @@ public abstract class Entity
 
         ani = new Animation();
         setAnimation (RIGHT, sprite.getSpriteArray(RIGHT), 10);
+
+        tileCollision=new TileCollision(this);
     }
 
     public void setSprite (Sprite sprite) { this.sprite = sprite; }
