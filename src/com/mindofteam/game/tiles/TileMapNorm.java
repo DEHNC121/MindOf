@@ -59,7 +59,7 @@ public class TileMapNorm extends TileMap
         int y = (int) (cam.getPos ().getCamVar ().y / tileHeight);
         for (int i = x; i < x + (cam.getWidth () / tileWidth)+1; i++)
         {
-            for (int j = y; j < y + (cam.getHeight () / tileHeight); j++)
+            for (int j = y; j < y + (cam.getHeight () / tileHeight)+1; j++)
             {
                 if (blocks.get(String.valueOf(i) + "," + String.valueOf(j))!= null)
                 {

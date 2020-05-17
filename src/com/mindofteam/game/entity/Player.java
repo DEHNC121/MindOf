@@ -3,6 +3,7 @@ package com.mindofteam.game.entity;
 import com.mindofteam.game.GamePanel;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.states.PlayState;
+import com.mindofteam.game.tiles.TileManager;
 import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
@@ -169,14 +170,21 @@ public class Player extends Entity
             move ();
             if (!tileCollision.collisionTile (dx, 0))
             {
-                PlayState.map.x += dx;
+                if  (PlayState.map.x + dx<= TileManager.width*64-GamePanel.width && PlayState.map.x + dx>0){
+                    PlayState.map.x += dx;
+                }
                 pos.x += dx;
+
             }
             if (!tileCollision.collisionTile (0, dy))
             {
-                PlayState.map.y += dy;
+                if  (PlayState.map.y + dy<= TileManager.height*64-GamePanel.height && PlayState.map.y + dy>0){
+                    PlayState.map.y += dy;
+                }
                 pos.y += dy;
             }
+
+            PlayState.notify(pos.x+","+pos.y);
         }
     }
 

@@ -20,8 +20,8 @@ public class MenuState extends GameState {
     private boolean one_up;
     private static ArrayList<String> menu;
     private GameStateManager gsm;
-    private static int startX;
-    private static int startY;
+    public static int startX;
+    public static int startY;
 
     public MenuState(GameStateManager gsm, int x, int y) {
         super(gsm);
@@ -66,7 +66,7 @@ public class MenuState extends GameState {
     }
 
     public void start() {
-        gsm.set(new PlayState(gsm,startX, startY));
+        gsm.set(new PlayState(gsm));
     }
 
 

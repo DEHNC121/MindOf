@@ -33,32 +33,30 @@ public class PlayState extends GameState
         return staticFont;
     }
 
-    public PlayState (GameStateManager gsm,int px,int py)
+    public PlayState (GameStateManager gsm)
     {
         super(gsm);
         this.gsm=gsm;
-        map = new Vector2f(px,py);
+        map = new Vector2f(MenuState.startX-GamePanel.width/2,MenuState.startY-GamePanel.height/2);
         Vector2f.setWorldVar(map.x, map.y);
 
-        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - GamePanel.width / 2, GamePanel.height / 2 - GamePanel.height / 2), GamePanel.width, GamePanel.height));
+        cam = new Camera (new AABB (new Vector2f (), GamePanel.width, GamePanel.height));
 
         tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
         staticFont=new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/hero.png"), new Vector2f(px + (GamePanel.width / 2) - 32, py + (GamePanel.height / 2) - 32), 86);
+        player = new Player(new Sprite("entity/hero.png"), new Vector2f(MenuState.startX  , MenuState.startY ), 86);
         message=new Message();
         currentMessage=null;
     }
 
-    public PlayState (GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
+    public PlayState (GameStateManager gsm, Player p) {
         super(gsm);
-        this.gsm=gsm;
-        this.map = map;
         Vector2f.setWorldVar(map.x, map.y);
 
-        cam = new Camera (new AABB (new Vector2f (GamePanel.width / 2 - 800 / 2, GamePanel.height / 2 - 600 / 2), 800, 800));
+        cam = new Camera (new AABB (new Vector2f (), GamePanel.width, GamePanel.height));
 
-        this.tm=tm;
+
         this.font=PlayState.staticFont;
         message=new Message();
         player = new Player(p.getSprite(),  p.getPos(), 86);

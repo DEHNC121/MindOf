@@ -21,6 +21,8 @@ public class TileManager
     public static ArrayList <TileMap> tm;
     public Camera cam;
 
+    public static int width;
+    public static int height;
     public TileMap getTm(int i) {
         return tm.get(i);
     }
@@ -80,7 +82,10 @@ public class TileManager
                 if (i <= 0)
                 {
                     width = Integer.parseInt(eElement.getAttribute("width"));
+                    this.width=width;
                     height = Integer.parseInt(eElement.getAttribute("height"));
+                    this.height=height;
+
                 }
 
                 data [i] = eElement.getElementsByTagName ("data").item (0).getTextContent ();

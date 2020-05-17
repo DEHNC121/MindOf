@@ -76,13 +76,13 @@ public class PauseState extends GameState
 
     public void unPause(){
         player.setStamina(stamina);
-        gsm.set(new PlayState(gsm, map, tm, player));
+        gsm.set(new PlayState(gsm, player));
     }
 
 
 
     public static void restart(){
-        gsm.set(new PlayState(gsm,760,880));
+        gsm.set(new PlayState(gsm));
     }
 
     public static void exit(){
