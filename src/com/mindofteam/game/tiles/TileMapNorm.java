@@ -43,6 +43,7 @@ public class TileMapNorm extends TileMap
 
     }
 
+
     public void render(Graphics2D g, AABB cam)
     {
         int x = (int) (cam.getPos ().getCamVar ().x / tileWidth);

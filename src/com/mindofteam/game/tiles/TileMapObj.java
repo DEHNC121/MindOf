@@ -11,8 +11,6 @@ import java.util.HashMap;
 public class TileMapObj extends TileMap
 {
 
-    //public static HashMap <String, Block> tmo_blocks;
-
     public static Block [] event_blocks;
 
     private int tileWidth;
@@ -26,7 +24,6 @@ public class TileMapObj extends TileMap
         Block tempBlock;
         event_blocks = new Block [width * height];
 
-        // tmo_blocks = new HashMap<String, Block>();
 
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
@@ -68,15 +65,10 @@ public class TileMapObj extends TileMap
                     tempBlock = new NormBlock(sprite.getSprite((int) ((temp - 1) % tileColumns), (int) ((temp - 1) / tileColumns)), new Vector2f((int) (i % width) * tileWidth, (int) (i / height) * tileHeight), tileWidth, tileHeight);
 
                 }
-                //tmo_blocks.put(String.valueOf((int) (i % width)) + "," + String.valueOf((int) (i / height)), tempBlock);
+
                 event_blocks [i] = tempBlock;
             }
         }
-    }
-
-    public Block [] getTmo_blocks ()
-    {
-        return event_blocks;
     }
 
 

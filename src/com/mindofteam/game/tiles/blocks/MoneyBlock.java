@@ -49,18 +49,21 @@ public class MoneyBlock extends Block{
 
         String[] status=this.status.split(",");
         this.status=status[0]+","+status[1]+",open"+","+status[3];
-        ((MoneyBlock)((TileMapObj) PlayState.getTm().getTm(0)).getTmo_blocks().get(String.valueOf(x +i) + "," + String.valueOf(y))).open();
+        ((MoneyBlock)TileMapObj.event_blocks[x+(y*h)]).open();
 
         if (status[0].equals("gold")){
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
+            TileMapNorm.blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
+            TileMapNorm.blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).g getEvent_blocks()[x+(y*h)].replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 1 : 0], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 0 : 1], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
 
         }
 
         if (status[0].equals("silver")){
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
-
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
+            TileMapNorm.blocks[x+((y-1)*h)]=new NormBlock(img[(i < 0) ? 5 : 4], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64);
+            TileMapNorm.blocks[(x+ i)+((y-1)*h)]=new NormBlock(img[(i < 0) ? 4 : 5], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64);
         }
     }
 
@@ -74,20 +77,22 @@ public class MoneyBlock extends Block{
 
         String[] status=this.status.split(",");
         this.status=status[0]+","+status[1]+","+status[2]+",0";
-        ((MoneyBlock)((TileMapObj) PlayState.getTm().getTm(0)).getTmo_blocks().get(String.valueOf(x +i) + "," + String.valueOf(y))).take();
+
+        ((MoneyBlock)TileMapObj.event_blocks[(x+i)+(y*h)]).take();
+//        ((MoneyBlock)((TileMapObj) PlayState.getTm().getTm(0)).getTmo_blocks().get(String.valueOf(x +i) + "," + String.valueOf(y))).take();
 
         if (status[0].equals("gold")){
             PlayState.notify((int) ((Math.random()*((100-25)+1))+25));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 3 : 2], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 2 : 3], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 3 : 2], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 2 : 3], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
 
         }
 
         if (status[0].equals("silver")){
 
             PlayState.notify((int) ((Math.random()*((50-5)+1))+5));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 7 : 6], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
-            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 6: 7], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 7 : 6], new Vector2f((int) x * 64, (int) (y - 1) * 64), 64, 64));
+//            ((TileMapNorm) PlayState.getTm().getTm(4)).getTmo_blocks().replace(String.valueOf(x + i) + "," + String.valueOf(y - 1), new NormBlock(img[(i < 0) ? 6: 7], new Vector2f((int) (x + i) * 64, (int) (y - 1) * 64), 64, 64));
 
         }
     }
@@ -113,8 +118,8 @@ public class MoneyBlock extends Block{
         String[] status=this.status.split(",");
         int s;
         if (
-                ((TileMapObj) PlayState.getTm().getTm(0)).getTmo_blocks().containsKey(String.valueOf(x + 1) + "," + String.valueOf(y)) &&
-                        ((TileMapObj) PlayState.getTm().getTm(0)).getTmo_blocks().get(String.valueOf(x + 1) + "," + String.valueOf(y)).getClass().equals(MoneyBlock.class)
+                TileMapObj.event_blocks[(x+1)+(y*h)]!=null &&
+                        TileMapObj.event_blocks[(x+1)+(y*h)].getClass().equals(MoneyBlock.class)
         ) {
             s=1;
 
