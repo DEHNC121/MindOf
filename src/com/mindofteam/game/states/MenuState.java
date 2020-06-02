@@ -10,10 +10,12 @@ import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MenuState extends GameState {
+    private Sprite background;
     private Font font;
     private int k;
     private boolean one_down;
@@ -25,6 +27,7 @@ public class MenuState extends GameState {
 
     public MenuState(GameStateManager gsm, int x, int y) {
         super(gsm);
+        this.background=new Sprite("backgrounds/background.png", 2000,1000);
         this.font = new Font ("font/font.png", 10, 10);
         this.k = 0;
         this.one_down = true;
@@ -80,6 +83,7 @@ public class MenuState extends GameState {
 
     @Override
     public void render(Graphics2D g) {
+        g.drawImage(background.getSpriteSheet(),0,0,GamePanel.width,GamePanel.height,null);
         String s="MIND OF";
         Sprite.drawArray(g, font, s, new Vector2f(GamePanel.width / 2 - (s.length() * 25)-20, GamePanel.height / 4-100), 78, 78, 50, 0);
         for (int i = 0; i < menu.size(); i++) {

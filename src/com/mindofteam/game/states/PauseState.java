@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class PauseState extends GameState
 {
+    private static Sprite background;
     private static GameStateManager gsm;
     private Font font;
     private int k;
@@ -28,6 +29,7 @@ public class PauseState extends GameState
 
     public PauseState(GameStateManager gsm, Vector2f map, TileManager tm, Player p) {
         super(gsm);
+        background=new Sprite("backgrounds/menu.png", 2000,1000);
         this.gsm=gsm;
         this.map=map;
         Vector2f.setWorldVar(map.x, map.y);
@@ -92,7 +94,7 @@ public class PauseState extends GameState
     @Override
     public void render(Graphics2D g) {
         //tm.render(g);
-
+        g.drawImage(background.getSpriteSheet(),0,0,GamePanel.width,GamePanel.height,null);
         for (int i=0;i<Mane_pause.size();i++){
             Sprite.drawArray(g, font,Mane_pause.get(i), new Vector2f (GamePanel.width /2-(Mane_pause.get(i).length()*25) , GamePanel.height/4+55*i), 62, 62, 42, 0);
         }
