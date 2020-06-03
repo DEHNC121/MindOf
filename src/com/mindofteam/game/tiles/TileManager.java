@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class TileManager
 {
 
-    public static ArrayList <TileMap> tm;
+    public ArrayList <TileMap> tm;
     public Camera cam;
 
     public static int width;
@@ -72,6 +72,7 @@ public class TileManager
             tileColumns = Integer.parseInt(eElement.getAttribute("columns"));
 
             sprite = new Sprite("tile/" + imagePath + ".png", tileWidth, tileHeight);
+
             list = doc.getElementsByTagName ("layer");
             layers = list.getLength();
 

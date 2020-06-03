@@ -80,8 +80,21 @@ public abstract class Entity
     public AABB getBounds () { return bounds; }
 
     public Vector2f getPos(){ return pos; }
+
+    public void setPos(Vector2f pos) {
+        this.pos = pos;
+    }
+
     public int getSize () { return size; }
     public Animation getAnimation () { return ani; }
+
+    public float getDx() {
+        return dx;
+    }
+
+    public float getDy() {
+        return dy;
+    }
 
     public void setFallen (boolean s)
     {

@@ -265,6 +265,6 @@ public class Camera
     public void render (Graphics g)
     {
         g.setColor (Color.blue);
-        g.drawRect ((int) collisionCam.getPos ().x, (int) collisionCam.getPos ().y, (int)collisionCam.getWidth (), (int)collisionCam.getHeight ());
+        //g.drawRect ((int) collisionCam.getPos ().x, (int) collisionCam.getPos ().y, (int)collisionCam.getWidth (), (int)collisionCam.getHeight ());
     }
 }

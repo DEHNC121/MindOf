@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MindOf:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MindOf_jar</output-path>
+    <root id="archive" name="MindOf.jar">
+      <element id="module-output" name="MindOf" />
+    </root>
+  </artifact>
+</component>

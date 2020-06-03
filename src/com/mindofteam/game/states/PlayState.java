@@ -14,19 +14,27 @@ public class PlayState extends GameState
 {
     private Font font;
     private static Font staticFont;
-    protected static Player player;
+    public static Player player;
     private static TileManager tm;
     private static GameStateManager gsm;
     private Message message;
     private static String currentMessage;
     public static boolean do_id=false;
 
-    private Camera cam;
+    public static Camera cam;
 
     public static Vector2f map;
 
+    public static Player getPlayer() {
+        return player;
+    }
+
     public static TileManager getTm() {
         return tm;
+    }
+
+    public static void setTm(TileManager tm) {
+        PlayState.tm = tm;
     }
 
     public static Font getStaticFont() {
@@ -48,7 +56,7 @@ public class PlayState extends GameState
         tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
         staticFont=new Font ("font/font.png", 10, 10);
-        player = new Player(new Sprite("entity/hero.png"), new Vector2f(MenuState.startX  , MenuState.startY ), 86);
+        player = new Player(new Sprite("entity/hero.png"), new Vector2f(MenuState.startX , MenuState.startY ), 86);
         message=new Message();
         currentMessage=null;
     }

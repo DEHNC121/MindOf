@@ -48,7 +48,9 @@ public class Player extends Entity
 
     public void move ()
     {
-        if(run && stamina>3){ bonus=3f; }
+        if(run && stamina>3){
+            bonus=3f;
+        }
         else { bonus=0f; }
 
         // up_left
@@ -162,8 +164,17 @@ public class Player extends Entity
         }
     }
 
+    public void goTo (float x,float y)
+    {
+        dx =x;
+        dy=y;
+    }
+
+
+
     public void update ()
     {
+        PlayState.notify(PlayState.map.x+" , "+PlayState.map.y);
         if(!paused){
             super.update ();
             stamina();
@@ -210,8 +221,8 @@ public class Player extends Entity
     public void render (Graphics2D g)
     {
         if(!paused){
-            g.setColor (Color.red);
-            g.drawRect ((int) (pos.getWorldVar ().x + bounds.getXOffset ()), (int) (pos.getWorldVar ().y + bounds.getYOffset ()), (int) bounds.getWidth (), (int) bounds.getHeight ());
+//            g.setColor (Color.red);
+//            g.drawRect ((int) (pos.getWorldVar ().x + bounds.getXOffset ()), (int) (pos.getWorldVar ().y + bounds.getYOffset ()), (int) bounds.getWidth (), (int) bounds.getHeight ());
             g.drawImage (ani.getImage (), (int) (pos.getWorldVar ().x), (int) (pos.getWorldVar ().y), size, size, null);
 
         }

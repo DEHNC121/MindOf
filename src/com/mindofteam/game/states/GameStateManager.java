@@ -25,6 +25,7 @@ public class GameStateManager
         map = new Vector2f(GamePanel.width, GamePanel.height);
         Vector2f.setWorldVar(map.x, map.y);
         currentState=new MenuState(this,1500,1270);
+        //currentState=new MenuState(this,800,1150);
     }
 
     public void set(GameState g){
