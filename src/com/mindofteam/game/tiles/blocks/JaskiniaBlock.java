@@ -5,6 +5,7 @@ import com.mindofteam.game.states.MenuState;
 import com.mindofteam.game.states.PlayState;
 import com.mindofteam.game.tiles.Message;
 import com.mindofteam.game.tiles.TileManager;
+import com.mindofteam.game.tiles.TileMap;
 import com.mindofteam.game.tiles.TileMapObj;
 import com.mindofteam.game.util.AABB;
 import com.mindofteam.game.util.Camera;
@@ -20,6 +21,9 @@ public class JaskiniaBlock extends Block {
 
     public static float X;
     public static float Y;
+
+    public static int w;
+    public static int h;
 
     public static Vector2f pos;
 
@@ -41,16 +45,18 @@ public class JaskiniaBlock extends Block {
 
         if (tm1==null)
         {
+            w= TileManager.width;
+            h= TileManager.height;
             hm= TileMapObj.event_blocks;
             goX=800;
             goY=1150;
             X=700;
             Y=1400;
             map1 = new Vector2f(goX- GamePanel.width/2,goY-GamePanel.height/2);
-            Vector2f.setWorldVar(map1.x, map1.y);
+            //Vector2f.setWorldVar(map1.x, map1.y);
             pos=new Vector2f(goX , goY);
             cam1 = new Camera(new AABB (new Vector2f (), GamePanel.width, GamePanel.height));
-            tm1 = new TileManager("tile/test1.xml", cam1);
+            tm1 = new TileManager("tile/test1.xml", cam1);//
         }else {
 
             HashMap<String, Block> temphm;
@@ -58,6 +64,18 @@ public class JaskiniaBlock extends Block {
             temphm=TileMapObj.event_blocks;
             TileMapObj.event_blocks=hm;
             hm= temphm;
+
+
+            int tempW,tempH;
+
+            tempH= TileManager.height;
+            tempW= TileManager.width;
+
+            TileManager.width=w;
+            TileManager.height=h;
+
+            w=tempW;
+            h=tempH;
         }
 
 
@@ -111,6 +129,9 @@ public class JaskiniaBlock extends Block {
 
         X=tempX;
         Y=tempY;
+
+
+
 
     }
 
