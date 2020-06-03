@@ -29,6 +29,8 @@ public class KeyBlock extends Block{
             if (PlayState.do_id){
                 PlayState.addKey();
                 ((TileMapNorm) PlayState.getTm().getTm(4)).blocks.remove(String.valueOf(x) + "," + String.valueOf(y));
+                ((TileMapNorm) PlayState.getTm().getTm(5)).blocks.remove(String.valueOf(x) + "," + String.valueOf(y));
+                ((TileMapNorm) PlayState.getTm().getTm(6)).blocks.remove(String.valueOf(x) + "," + String.valueOf(y));
 
                 taken=true;
             }

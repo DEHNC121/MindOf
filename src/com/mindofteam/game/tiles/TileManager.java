@@ -21,6 +21,8 @@ public class TileManager
     public ArrayList <TileMap> tm;
     public Camera cam;
 
+    int t=0;
+    public int k=0;
     public static int width;
     public static int height;
     public TileMap getTm(int i) {
@@ -116,9 +118,27 @@ public class TileManager
         {
             return;
         }
-        for (int i = 0; i < tm.size(); ++i)
+        for (int i = 1; i < tm.size()-1; ++i)
         {
-            tm.get(i).render(g, cam.getBounds ());
+            if (i==tm.size()-2 && k==0)
+            {
+                tm.get(i).render(g, cam.getBounds ());
+                t++;
+                if (t==20){k++;k=k%3;t=0;}
+            }else if (i==tm.size()-2 && k==1)
+            {
+                t++;
+                tm.get(i+1).render(g, cam.getBounds ());
+                if (t==19){k++;k=k%3;t=0;}
+            }else if (i==tm.size()-2 && k==2)
+            {
+                t++;
+                if (t==18){k++;k=k%3;t=0;}
+            }else
+                {
+                    tm.get(i).render(g, cam.getBounds ());
+                }
+
         }
     }
 

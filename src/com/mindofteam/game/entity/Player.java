@@ -174,7 +174,7 @@ public class Player extends Entity
 
     public void update ()
     {
-        PlayState.notify(PlayState.map.x+" , "+PlayState.map.y);
+        //PlayState.notify(PlayState.map.x+" , "+PlayState.map.y);
         if(!paused){
             super.update ();
             stamina();
