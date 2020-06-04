@@ -47,7 +47,7 @@ public class PlayState extends GameState
         this.gsm=gsm;
         map = new Vector2f(MenuState.startX-GamePanel.width/2,MenuState.startY-GamePanel.height/2);
         Vector2f.setWorldVar(map.x, map.y);
-        System.out.print(map.x+" "+map.y);
+        //System.out.print(map.x+" "+map.y);
 
         cam = new Camera (new AABB (new Vector2f (), GamePanel.width, GamePanel.height));
         //cam = new Camera (new AABB (new Vector2f (), 900, 600));
