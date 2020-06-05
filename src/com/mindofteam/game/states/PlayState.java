@@ -44,6 +44,9 @@ public class PlayState extends GameState
     public PlayState (GameStateManager gsm)
     {
         super(gsm);
+
+        MenuState.startX=1500;
+        MenuState.startY =1270;
         this.gsm=gsm;
         map = new Vector2f(MenuState.startX-GamePanel.width/2,MenuState.startY-GamePanel.height/2);
         Vector2f.setWorldVar(map.x, map.y);

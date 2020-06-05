@@ -34,7 +34,6 @@ public class MenuState extends GameState {
         this.one_up = true;
         this.menu = new ArrayList<String>();
         menu.add("NEW GAME");
-        menu.add("SETTINGS");
         menu.add("EXIT");
         startX=x;
         startY=y;

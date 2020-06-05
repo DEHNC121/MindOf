@@ -34,12 +34,14 @@ public class JaskiniaBlock extends Block {
     private static Camera cam1;
 
     public static Vector2f map1;
-    private static TileManager tm1;
+    public static TileManager tm1;
 
     public JaskiniaBlock(BufferedImage img, Vector2f pos, int w, int h) {
         super(img, pos, w, h);
 
     }
+
+
 
     public void go(){
 

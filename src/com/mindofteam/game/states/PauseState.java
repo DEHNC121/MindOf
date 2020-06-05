@@ -5,6 +5,7 @@ import com.mindofteam.game.entity.Player;
 import com.mindofteam.game.graphics.Font;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.TileManager;
+import com.mindofteam.game.tiles.blocks.JaskiniaBlock;
 import com.mindofteam.game.util.KeyHandler;
 import com.mindofteam.game.util.MouseHandler;
 import com.mindofteam.game.util.Vector2f;
@@ -84,6 +85,7 @@ public class PauseState extends GameState
 
 
     public static void restart(){
+        JaskiniaBlock.tm1=null;
         gsm.set(new PlayState(gsm));
     }
 
