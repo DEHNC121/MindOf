@@ -62,8 +62,7 @@ public class MenuState extends GameState {
         }
         if (key.enter.down) {
             if (k == 0) start();
-            if (k == 1) settings();
-            if (k == 2) exit();
+            if (k == 1) exit();
         }
     }
 
