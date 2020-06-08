@@ -16,9 +16,9 @@ public class Window extends JFrame
         pack();
 
 
-        setAlwaysOnTop(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
+//        setAlwaysOnTop(true);
+//        setResizable(false);
+//        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

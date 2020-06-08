@@ -5,6 +5,7 @@ import com.mindofteam.game.entity.Player;
 import com.mindofteam.game.graphics.Sprite;
 import com.mindofteam.game.tiles.Message;
 import com.mindofteam.game.tiles.TileManager;
+import com.mindofteam.game.tiles.blocks.MessageBlock;
 import com.mindofteam.game.util.*;
 import com.mindofteam.game.graphics.Font;
 
@@ -56,6 +57,7 @@ public class PlayState extends GameState
         //cam = new Camera (new AABB (new Vector2f (), 900, 600));
 
 
+        MessageBlock.count=0;
 
         tm = new TileManager ("tile/Map.xml", cam);
         font = new Font ("font/font.png", 10, 10);
