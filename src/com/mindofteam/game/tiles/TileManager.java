@@ -61,14 +61,7 @@ public class TileManager
         {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
-
-            System.out.print(path+"\n");
-            File f=new File(getClass().getClassLoader().getResource(path).toURI());
-
-            System.out.print("test2\n");
-            Document doc = builder.parse(new File(getClass().getClassLoader().getResource(path).toURI()));
-
-            System.out.print("test2\n");
+            Document doc = builder.parse(getClass().getClassLoader().getResourceAsStream(path));
             doc.getDocumentElement().normalize();
 
             NodeList list = doc.getElementsByTagName ("tileset");
