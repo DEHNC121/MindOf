@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class TileManager
@@ -60,8 +61,14 @@ public class TileManager
         {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = builderFactory.newDocumentBuilder();
+
+            System.out.print(path+"\n");
+            File f=new File(getClass().getClassLoader().getResource(path).toURI());
+
+            System.out.print("test2\n");
             Document doc = builder.parse(new File(getClass().getClassLoader().getResource(path).toURI()));
 
+            System.out.print("test2\n");
             doc.getDocumentElement().normalize();
 
             NodeList list = doc.getElementsByTagName ("tileset");
@@ -109,6 +116,7 @@ public class TileManager
         catch (Exception e)
         {
             System.out.println("ERROR in TileManager: cannot read tilemap");
+            System.out.println(e);
         }
 
     }
