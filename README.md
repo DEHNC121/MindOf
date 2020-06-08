@@ -6,7 +6,6 @@ Sterowanie: 	W S A D - poruszanie się, wybór opcji z menu
 		P - pauza
 
 Po pobraniu uruchomic grą komendą:
-java -jar out\artifacts\MindOf_jar\MindOf.jar (Windows)
 java -jar out/artifacts/MindOf_jar/MindOf.jar (Unix)
 
 Autorzy: Paweł Nowak, Denys Demiankow, Tymoteusz Chełmecki
