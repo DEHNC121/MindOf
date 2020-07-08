@@ -1,11 +1,11 @@
 # MindOf
 2D game for a java course
 
-Sterowanie: 	W S A D - poruszanie się, wybór opcji z menu
-		K - bieganie
-		P - pauza
+Control: W S A D - moving
+K - running
+P - pause
 
-Po pobraniu uruchomic grą komendą:
+After downloading, start the game with the command:
 java -jar out/artifacts/MindOf_jar/MindOf.jar (Unix)
 
-Autorzy: Paweł Nowak, Denys Demiankow, Tymoteusz Chełmecki
+Authors:  Denys Demiankov,Paweł Nowak, Tymoteusz Chełmecki
