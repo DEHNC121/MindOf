@@ -16,3 +16,4 @@ Authors:  Denys Demiankov,Paweł Nowak, Tymoteusz Chełmecki
 <img src="res/img/1.png">
 <img src="res/img/2.png">
 <img src="res/img/3.png">
+<img src="res/img/4.png">
